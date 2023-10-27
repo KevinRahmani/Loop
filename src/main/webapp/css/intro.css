@@ -1,0 +1,39 @@
+.intro{
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    background: #161616;
+    transition: 1s;
+}
+
+.logo-header{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff
+}
+
+.logo{
+    font-family: 'Poppins', sans-serif;
+    font-size: 250%;
+    position: relative;
+    display: inline-block;
+    bottom: -40px;
+    opacity: 0;
+}
+
+.logo.active{
+    bottom:0;
+    opacity: 1;
+    transition: ease-in-out 0.5s;
+}
+
+.logo.fade{
+    bottom: 150px;
+    opacity: 0;
+    transition: ease-in-out 0.5s;
+}
