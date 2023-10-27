@@ -3,8 +3,8 @@ package model.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "high-tech", schema = "stock_loop", catalog = "")
-public class HighTechEntity {
+@Table(name = "cm", schema = "stock_loop", catalog = "")
+public class CmEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -133,19 +133,20 @@ public class HighTechEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        HighTechEntity that = (HighTechEntity) o;
+        CmEntity cmEntity = (CmEntity) o;
 
-        if (id != that.id) return false;
-        if (prix != that.prix) return false;
-        if (stock != that.stock) return false;
-        if (sales != that.sales) return false;
-        if (nom != null ? !nom.equals(that.nom) : that.nom != null) return false;
-        if (marque != null ? !marque.equals(that.marque) : that.marque != null) return false;
-        if (vendeur != null ? !vendeur.equals(that.vendeur) : that.vendeur != null) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
-        if (couleur != null ? !couleur.equals(that.couleur) : that.couleur != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (image != null ? !image.equals(that.image) : that.image != null) return false;
+        if (id != cmEntity.id) return false;
+        if (prix != cmEntity.prix) return false;
+        if (stock != cmEntity.stock) return false;
+        if (sales != cmEntity.sales) return false;
+        if (nom != null ? !nom.equals(cmEntity.nom) : cmEntity.nom != null) return false;
+        if (marque != null ? !marque.equals(cmEntity.marque) : cmEntity.marque != null) return false;
+        if (vendeur != null ? !vendeur.equals(cmEntity.vendeur) : cmEntity.vendeur != null) return false;
+        if (type != null ? !type.equals(cmEntity.type) : cmEntity.type != null) return false;
+        if (couleur != null ? !couleur.equals(cmEntity.couleur) : cmEntity.couleur != null) return false;
+        if (description != null ? !description.equals(cmEntity.description) : cmEntity.description != null)
+            return false;
+        if (image != null ? !image.equals(cmEntity.image) : cmEntity.image != null) return false;
 
         return true;
     }

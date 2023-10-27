@@ -1,38 +1,38 @@
 package model.dao;
 
 public class ProductSearchDTO {
-    private int id;
     private String nom;
-    private int prix;
+    private String marque;
+    private Integer prix;
     private String vendeur;
-    private int stock;
+    private Integer stock;
     private String type;
     private String couleur;
     private String description;
-    private int sales;
+    private Integer sales;
     private String image;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNom() {
         return nom;
+    }
+
+    public String getMarque() {
+        return marque;
+    }
+
+    public void setMarque(String marque) {
+        this.marque = marque;
     }
 
     public void setNom(String nom) {
         this.nom = nom;
     }
 
-    public int getPrix() {
+    public Integer getPrix() {
         return prix;
     }
 
-    public void setPrix(int prix) {
+    public void setPrix(Integer prix) {
         this.prix = prix;
     }
 
@@ -44,11 +44,11 @@ public class ProductSearchDTO {
         this.vendeur = vendeur;
     }
 
-    public int getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
@@ -76,11 +76,11 @@ public class ProductSearchDTO {
         this.description = description;
     }
 
-    public int getSales() {
+    public Integer getSales() {
         return sales;
     }
 
-    public void setSales(int sales) {
+    public void setSales(Integer sales) {
         this.sales = sales;
     }
 

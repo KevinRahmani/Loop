@@ -3,8 +3,8 @@ package model.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "sports et loisirs", schema = "stock_loop", catalog = "")
-public class SportsEtLoisirsEntity {
+@Table(name = "sports", schema = "stock_loop", catalog = "")
+public class SportsEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -133,7 +133,7 @@ public class SportsEtLoisirsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SportsEtLoisirsEntity that = (SportsEtLoisirsEntity) o;
+        SportsEntity that = (SportsEntity) o;
 
         if (id != that.id) return false;
         if (prix != that.prix) return false;

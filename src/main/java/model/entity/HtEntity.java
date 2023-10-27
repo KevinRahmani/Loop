@@ -3,8 +3,8 @@ package model.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "bricolage, jardin et animalerie", schema = "stock_loop", catalog = "")
-public class BricolageJardinEtAnimalerieEntity {
+@Table(name = "ht", schema = "stock_loop", catalog = "")
+public class HtEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -133,19 +133,20 @@ public class BricolageJardinEtAnimalerieEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        BricolageJardinEtAnimalerieEntity that = (BricolageJardinEtAnimalerieEntity) o;
+        HtEntity htEntity = (HtEntity) o;
 
-        if (id != that.id) return false;
-        if (prix != that.prix) return false;
-        if (stock != that.stock) return false;
-        if (sales != that.sales) return false;
-        if (nom != null ? !nom.equals(that.nom) : that.nom != null) return false;
-        if (marque != null ? !marque.equals(that.marque) : that.marque != null) return false;
-        if (vendeur != null ? !vendeur.equals(that.vendeur) : that.vendeur != null) return false;
-        if (type != null ? !type.equals(that.type) : that.type != null) return false;
-        if (couleur != null ? !couleur.equals(that.couleur) : that.couleur != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-        if (image != null ? !image.equals(that.image) : that.image != null) return false;
+        if (id != htEntity.id) return false;
+        if (prix != htEntity.prix) return false;
+        if (stock != htEntity.stock) return false;
+        if (sales != htEntity.sales) return false;
+        if (nom != null ? !nom.equals(htEntity.nom) : htEntity.nom != null) return false;
+        if (marque != null ? !marque.equals(htEntity.marque) : htEntity.marque != null) return false;
+        if (vendeur != null ? !vendeur.equals(htEntity.vendeur) : htEntity.vendeur != null) return false;
+        if (type != null ? !type.equals(htEntity.type) : htEntity.type != null) return false;
+        if (couleur != null ? !couleur.equals(htEntity.couleur) : htEntity.couleur != null) return false;
+        if (description != null ? !description.equals(htEntity.description) : htEntity.description != null)
+            return false;
+        if (image != null ? !image.equals(htEntity.image) : htEntity.image != null) return false;
 
         return true;
     }
