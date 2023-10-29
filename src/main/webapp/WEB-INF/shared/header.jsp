@@ -7,92 +7,92 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="../index.jsp">
+                <a href="redirection-servlet">
                     <i class='bx bx-grid-alt' ></i>
                     <span class="link_name">Accueil</span>
                 </a>
                 <ul class="sub-menu blank">
                     <li>
-                        <a class="link_name" href="../index.jsp">Accueil</a>
+                        <a class="link_name" href="redirection-servlet">Accueil</a>
                     </li>
                 </ul>
             </li>
             <li>
                 <div class="icon-link">
-                    <a href="categorie.jsp">
+                    <a href="redirection-servlet?requestedPage=categorie&categorie=ht">
                         <i class="fa-solid fa-laptop"></i>
                         <span class="link_name">High-Tech</span>
                     </a>
                 </div>
                 <ul class="sub-menu">
-                    <li><a class="link_name" href="categorie.jsp?categorie=high-tech">High-Tech</a></li>
+                    <li><a class="link_name" href="redirection-servlet?requestedPage=categorie&categorie=ht">High-Tech</a></li>
                 </ul>
             </li>
             <li>
                 <div class="icon-link">
-                    <a href="categorie.jsp?categorie=bricolage, jardin et animalerie">
+                    <a href="redirection-servlet?requestedPage=categorie&categorie=bja">
                         <i class="fa-solid fa-screwdriver-wrench"></i>
                         <span class="link_name">Bricolage & co</span>
                     </a>
                 </div>
                 <ul class="sub-menu">
-                    <li><a class="link_name" href="categorie.jsp?categorie=bricolage, jardin et animalerie">Bricolage & co</a></li>
+                    <li><a class="link_name" href="redirection-servlet?requestedPage=categorie&categorie=bja">Bricolage & co</a></li>
                 </ul>
             </li>
             <li>
-                <a href="categorie.jsp?categorie=musique, dvd et blu-ray">
+                <a href="redirection-servlet?requestedPage=categorie&categorie=mdb">
                     <i class="fa-solid fa-compact-disc"></i>
                     <span class="link_name">Musiques, DVD et Blu-ray</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="categorie.jsp?categorie=musique, dvd et blu-ray">Musiques, DVD et Blu-ray</a></li>
+                    <li><a class="link_name" href="redirection-servlet?requestedPage=categorie&categorie=mdb">Musiques, DVD et Blu-ray</a></li>
                 </ul>
             </li>
             <li>
-                <a href="categorie.jsp?categorie=livre">
+                <a href="redirection-servlet?requestedPage=categorie&categorie=livre">
                     <i class="fa-solid fa-book"></i>
                     <span class="link_name">Livre</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="categorie.jsp?categorie=livre">Livre</a></li>
+                    <li><a class="link_name" href="redirection-servlet?requestedPage=categorie&categorie=livre">Livre</a></li>
                 </ul>
             </li>
             <li>
                 <div class="icon-link">
-                    <a href="categorie.jsp?categorie=cuisine et maison">
+                    <a href="redirection-servlet?requestedPage=categorie&categorie=cm">
                         <i class="fa-solid fa-chair"></i>
                         <span class="link_name">Cuisine et Maison</span>
                     </a>
                 </div>
                 <ul class="sub-menu">
-                    <li><a class="link_name" href="categorie.jsp?categorie=cuisine et maison">Cuisine et Maison</a></li>
+                    <li><a class="link_name" href="redirection-servlet?requestedPage=categorie&categorie=cm">Cuisine et Maison</a></li>
                 </ul>
             </li>
             <li>
-                <a href="categorie.jsp?categorie=sports et loisirs">
+                <a href="redirection-servlet?requestedPage=categorie&categorie=sports">
                     <i class="fa-solid fa-volleyball"></i>
                     <span class="link_name">Sports et Loisirs</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="categorie.jsp?categorie=sports et loisirs">Sports et Loisirs</a></li>
+                    <li><a class="link_name" href="redirection-servlet?requestedPage=categorie&categorie=sports">Sports et Loisirs</a></li>
                 </ul>
             </li>
             <li>
-                <a href="categorie.jsp?categorie=automobile">
+                <a href="redirection-servlet?requestedPage=categorie&categorie=automobile">
                     <i class="fa-solid fa-car-side"></i>
                     <span class="link_name">Automobile</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="categorie.jsp?categorie=automobile">Automobile</a></li>
+                    <li><a class="link_name" href="redirection-servlet?requestedPage=categorie&categorie=automobile">Automobile</a></li>
                 </ul>
             </li>
             <li>
-                <a href="categorie.jsp?categorie=vetements">
+                <a href="redirection-servlet?requestedPage=categorie&categorie=vetements">
                     <i class="fa-solid fa-shirt"></i>
                     <span class="link_name">Vetements</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="categorie.jsp?categorie=vetements">Vetements</a></li>
+                    <li><a class="link_name" href="redirection-servlet?requestedPage=categorie&categorie=vetements">Vetements</a></li>
                 </ul>
             </li>
             <li>
@@ -159,7 +159,7 @@
                 </a>
             </div>
             <ol>
-                <li><a href="../index.jsp">Accueil</a></li>
+                <li><a href="redirection-servlet">Accueil</a></li>
                 <li><a href="contact.jsp">Contact</a></li>
                 <li><a href="produitsPopulaires.jsp">Best-sellers</a></li>
 

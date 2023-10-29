@@ -1,6 +1,4 @@
-import Swiper from "./swiper-bundle.min"
-
-const swiper = new Swiper(".slide-container", {
+var swiper = new Swiper(".slide-container", {
     slidesPerView: 4,
     spaceBetween: 20,
     sliderPerGroup: 4,
@@ -34,7 +32,7 @@ const swiper = new Swiper(".slide-container", {
     },
 });
 
-const TrandingSlider = new Swiper('.tranding-slider', {
+var TrandingSlider = new Swiper('.tranding-slider', {
     effect: 'coverflow',
     grabCursor: true,
     centeredSlides: true,

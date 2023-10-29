@@ -1,5 +1,7 @@
 package model.dao;
 
+import model.service.ArticleDTO;
+
 import java.util.List;
 public interface GenericDAO<T> {
 
@@ -8,5 +10,5 @@ public interface GenericDAO<T> {
     void save(T entity);
     void update(T entity);
     void delete(T entity);
-    List<T> findByFilters(ProductSearchDTO filters);
+    List<T> findAll();
 }

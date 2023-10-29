@@ -18,6 +18,7 @@
       <class>model.entity.MdbEntity</class>
       <class>model.entity.SportsEntity</class>
       <class>model.entity.HtEntity</class>
+      <class>model.beans.StockEntity</class>
       <properties>
           <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/stock_loop"/>
           <property name="toplink.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
