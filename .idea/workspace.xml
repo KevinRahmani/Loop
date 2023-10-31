@@ -10,23 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c3081433-3129-492a-872f-8ad88fe3f6ea" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/webContexts.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controler/RedirectionServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controler/RedirectionServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/service/ArticleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/service/ArticleDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/categorie.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/categorie.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/shared/footer.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/shared/footer.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/b433c716-9fcc-481b-b101-cb0f528400ae.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/b433c716-9fcc-481b-b101-cb0f528400ae.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/shared/header.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/shared/header.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/img/sports/702/1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/img/sports/702/1.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/img/vetements/720/presentation.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/model/service/ArticleDAOTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/model/service/ArticleDAOTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/css/header.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/css/header.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +210,8 @@
       <workItem from="1698693151288" duration="779000" />
       <workItem from="1698700137363" duration="2933000" />
       <workItem from="1698737019429" duration="4384000" />
-      <workItem from="1698741437366" duration="7229000" />
+      <workItem from="1698741437366" duration="7613000" />
+      <workItem from="1698749101773" duration="1539000" />
     </task>
     <servers />
   </component>

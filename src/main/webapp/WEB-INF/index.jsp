@@ -35,7 +35,7 @@
 <section class="container_body">
     <div class="presentation">
         <img src="img/presentation.jpg" alt="presentation">
-        <div class="note">Design your life, Vendor will make it</div>
+        <div class="note">Design your life, Loop will make it</div>
     </div>
     <div class="box-container">
         <div class="title">Nos produits du moment : <span class="gras">Smartphone</span></div>
@@ -111,7 +111,7 @@
     </section>
     <section class="cartes_cadeau">
         <div class="titre_carte">
-            <div class="sous-titre"><span>Vendor</span> cartes cadeaux</div>
+            <div class="sous-titre"><span>Loop</span> cartes cadeaux</div>
             <div class="sous-titre-deux">Dites Merci avec une carte cadeau</div>
             <div class="sous-titre-deux">De 10 à 1000 euros pour vous et vos proches !</div>
         </div>

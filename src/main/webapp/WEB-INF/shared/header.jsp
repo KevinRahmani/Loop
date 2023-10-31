@@ -153,7 +153,7 @@
 
             </div>
             <div class="box">
-                <input id="search_produit" type="text" placeholder="Rechercher sur Vendor">
+                <input id="search_produit" type="text" placeholder="Rechercher sur Loop">
                 <a id="search_loupe" href="#">
                     <i class="fas fa-search"></i>
                 </a>
