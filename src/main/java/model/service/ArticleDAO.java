@@ -177,5 +177,23 @@ public class ArticleDAO<T> implements GenericDAO<T> {
         return entityManager.createQuery(cq).getResultList();
     }
 
+    //à tester
+    public T findByCategoryMaxSales(String categorie) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Integer> cq = cb.createQuery(Integer.class);
+        Root<T> root = cq.from(entityClass);
+
+        //on cherche le sales max
+        cq.select(cb.max(root.get("sales")));
+        cq.where(cb.equal(root.get("categorie"), categorie));
+        int maxSales = entityManager.createQuery(cq).getSingleResult();
+
+        //DTO avec le sales max
+        ArticleDTO dto = new ArticleDTO();
+        dto.setSales(maxSales);
+        dto.setCategorie(categorie);
+        return findAllByFilters(dto).get(0);
+    }
+
 
 }

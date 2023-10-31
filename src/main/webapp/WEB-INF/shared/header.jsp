@@ -3,7 +3,7 @@
     <div class="sidebar close">
         <div class="logo-details">
             <i class='bx bx-menu' ></i>
-            <span class="logo_name">Vendor</span>
+            <span class="logo_name">Loop</span>
         </div>
         <ul class="nav-links">
             <li>
@@ -161,9 +161,9 @@
             <ol>
                 <li><a href="redirection-servlet">Accueil</a></li>
                 <li><a href="contact.jsp">Contact</a></li>
-                <li><a href="produitsPopulaires.jsp">Best-sellers</a></li>
+                <li><a href="redirection-servlet?requestedPage=popular">Best-sellers</a></li>
 
-                <li><!--<a href="
+                <%--<li><a href="
                     <?php
                     if(isset($_SESSION['connecte'])){
                         switch ($_SESSION['connecte']) {
@@ -195,7 +195,7 @@
                         }
                     ?>
                     </a>
-                    --></li>
+                    </li>--%>
                 <li><a href="panier.jsp">Panier</a></li>
 
             </ol>

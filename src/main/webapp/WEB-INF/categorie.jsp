@@ -7,6 +7,7 @@
     @SuppressWarnings("unchecked")
     List<StockEntity> listCategorie = (List<StockEntity>) request.getAttribute("listCategorie");
     String categorie = (String) request.getAttribute("categorie");
+    String categorieDisplay = (String) request.getAttribute("categorieDisplay");
 %>
 
 <html>
@@ -33,7 +34,7 @@
         <div class="fond_accueil">
             <img src="img/<%=categorie%>/<%=categorie%>.jpg" alt="balbala">
             <div class="container">
-                <div class="titre_section"><%=categorie%></div>
+                <div class="titre_section"><%=categorieDisplay%></div>
                 <div class="citation">You want it, Loop will make it</div>
                 <div class="lien_ancre">
                     <a href="#produit">Commander maintenant !</a>

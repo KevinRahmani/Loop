@@ -4,20 +4,6 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
   <persistence-unit name="default">
-
-      <class>model.entity.AutomobileEntity</class>
-      <class>model.entity.BricolageJardinEtAnimalerieEntity</class>
-      <class>model.entity.CuisineEtMaisonEntity</class>
-      <class>model.entity.HighTechEntity</class>
-      <class>model.entity.LivreEntity</class>
-      <class>model.entity.MusiqueDvdEtBluRayEntity</class>
-      <class>model.entity.SportsEtLoisirsEntity</class>
-      <class>model.entity.VetementsEntity</class>
-      <class>model.entity.BjaEntity</class>
-      <class>model.entity.CmEntity</class>
-      <class>model.entity.MdbEntity</class>
-      <class>model.entity.SportsEntity</class>
-      <class>model.entity.HtEntity</class>
       <class>model.beans.StockEntity</class>
       <properties>
           <property name="toplink.jdbc.url" value="jdbc:mysql://localhost:3306/stock_loop"/>

@@ -239,4 +239,18 @@ class ArticleDAOTest {
         assertEquals(1,result.size());
         articleDao.delete(stockEntity);
     }
+
+    @Test
+    @DisplayName("Should findByCategoryMaxSales")
+    void findByCategoryMaxSales() {
+        //GIVEN
+        initialize();
+        articleDao.save(stockEntity);
+        //WHEN
+        StockEntity result = articleDao.findByCategoryMaxSales(stockEntity.getCategorie());
+        //THEN
+        assertNotNull(result);
+        assertEquals(result, stockEntity);
+        articleDao.delete(stockEntity);
+    }
 }
