@@ -1,13 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="model.beans.StockEntity" %>
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%
-    @SuppressWarnings("unchecked")
-    List<StockEntity> watchList = (List<StockEntity>) request.getAttribute("watchList");
-    @SuppressWarnings("unchecked")
-    List<StockEntity> smartphoneList = (List<StockEntity>) request.getAttribute("smartphoneList");
-%>
 
 <!DOCTYPE html>
 <html>
@@ -35,7 +27,7 @@
 <section class="container_body">
     <div class="presentation">
         <img src="img/presentation.jpg" alt="presentation">
-        <div class="note">Design your life, Vendor will make it</div>
+        <div class="note">Design your life, Loop will make it</div>
     </div>
     <div class="box-container">
         <div class="title">Nos produits du moment : <span class="gras">Smartphone</span></div>
@@ -43,7 +35,7 @@
         <div class="carousel_container swiper">
             <div class="slide-container">
                 <div class="card-wrapper swiper-wrapper">
-                    <c:forEach items="${smartphoneList}" var="smartphone">
+                    <c:forEach items="${requestScope.smartphoneList}" var="smartphone">
                         <div class="card swiper-slide">
                             <!-- Page de produit à implémenter -->
                             <a href="redirection-servlet?requestedPage=product&product=${smartphone.id}">
@@ -79,13 +71,13 @@
             <div class="swiper tranding-slider">
                 <div class="swiper-wrapper">
                     <!-- Slide start -->
-                    <c:forEach items="${watchList}" var="watch">
+                    <c:forEach items="${requestScope.watchList}" var="watch">
                         <div class="swiper-slide tranding-slide">
                             <div class="tranding-slide-img">
                                 <img src="${watch.image}1.jpg" alt="">
                             </div>
                             <!-- A implementer-->
-                            <a href="redirection-servlet">
+                            <a href="redirection-servlet?requestedPage=product&product=${watch.id}">
                                 <div class="tranding-slide-content">
                                     <h1 class="montre-prix">${watch.prix} euros</h1>
                                     <div class="tranding-slide-content-bottom">
@@ -111,7 +103,7 @@
     </section>
     <section class="cartes_cadeau">
         <div class="titre_carte">
-            <div class="sous-titre"><span>Vendor</span> cartes cadeaux</div>
+            <div class="sous-titre"><span>Loop</span> cartes cadeaux</div>
             <div class="sous-titre-deux">Dites Merci avec une carte cadeau</div>
             <div class="sous-titre-deux">De 10 à 1000 euros pour vous et vos proches !</div>
         </div>

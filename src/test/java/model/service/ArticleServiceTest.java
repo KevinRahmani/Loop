@@ -3,23 +3,25 @@ package model.service;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import model.beans.StockEntity;
-import model.service.ArticleDAO;
-import model.service.ArticleDTO;
-import org.junit.jupiter.api.*;
+import model.beans.ArticleEntity;
+import model.dto.ArticleDTO;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ArticleDAOTest {
+class ArticleServiceTest {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
-    private ArticleDAO<StockEntity> articleDao;
-    private StockEntity stockEntity;
+    private ArticleService<ArticleEntity> articleService;
+    private ArticleEntity stockEntity;
 
     void initialize(){
-        stockEntity = new StockEntity();
+        stockEntity = new ArticleEntity();
         stockEntity.setCouleur("default");
         stockEntity.setDescription("default");
         stockEntity.setNom("default");
@@ -35,9 +37,9 @@ class ArticleDAOTest {
 
     @BeforeEach
     public void setUp() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        entityManagerFactory = Persistence.createEntityManagerFactory("stockPersistence");
         entityManager = entityManagerFactory.createEntityManager();
-        articleDao = new ArticleDAO<>(StockEntity.class, entityManager);
+        articleService = new ArticleService<>(ArticleEntity.class, entityManager);
         entityManager.getTransaction().begin();
     }
 
@@ -49,43 +51,31 @@ class ArticleDAOTest {
     }
 
     @Test
-    @DisplayName("Should create")
-    void create() {
-        //GIVEN
-        initialize();
-        //WHEN
-        StockEntity createdEntity = articleDao.create(stockEntity);
-        //THEN
-        assertNotNull(articleDao.findById(stockEntity.getId()));
-        assertNotNull(createdEntity);
-        articleDao.delete(stockEntity);
-    }
-    @Test
     @DisplayName("Should findById")
     void findById() {
         //GIVEN
         initialize();
-        StockEntity createdEntity = articleDao.create(stockEntity);
+        articleService.add(stockEntity);
         //WHEN
-        StockEntity foundEntity = articleDao.findById(createdEntity.getId());
+        ArticleEntity foundEntity = articleService.findById(stockEntity.getId());
         //THEN
         assertNotNull(foundEntity);
-        assertEquals(createdEntity, foundEntity);
-        articleDao.delete(stockEntity);
+        assertEquals(stockEntity, foundEntity);
+        articleService.delete(stockEntity);
     }
 
     @Test
-    @DisplayName("should save")
-    void save() {
+    @DisplayName("should add")
+    void add() {
         // GIVEN
         initialize();
         // WHEN
-        articleDao.save(stockEntity);
+        articleService.add(stockEntity);
         // THEN
-        StockEntity savedEntity = articleDao.findById(stockEntity.getId());
+        ArticleEntity savedEntity = articleService.findById(stockEntity.getId());
         assertNotNull(savedEntity);
         assertEquals(savedEntity, stockEntity);
-        articleDao.delete(stockEntity);
+        articleService.delete(stockEntity);
     }
 
     @Test
@@ -93,31 +83,31 @@ class ArticleDAOTest {
     void update() {
         // GIVEN
         initialize();
-        articleDao.save(stockEntity);
+        articleService.add(stockEntity);
         stockEntity.setNom("Updated Name");
         stockEntity.setPrix(5000);
         // WHEN
-        articleDao.update(stockEntity);
-        StockEntity updatedEntity = articleDao.findById(stockEntity.getId());
+        articleService.update(stockEntity);
+        ArticleEntity updatedEntity = articleService.findById(stockEntity.getId());
         // THEN
         assertNotNull(updatedEntity);
         assertNotEquals("default", updatedEntity.getNom());
         assertNotEquals(0,updatedEntity.getPrix());
         assertEquals("Updated Name", updatedEntity.getNom());
         assertEquals(5000, updatedEntity.getPrix());
-        articleDao.delete(stockEntity);
+        articleService.delete(stockEntity);
     }
     @Test
     @DisplayName("Should delete")
     void delete() {
         // GIVEN
         initialize();
-        articleDao.save(stockEntity);
+        articleService.add(stockEntity);
         // WHEN
         int entityId = stockEntity.getId();
-        articleDao.delete(stockEntity);
+        articleService.delete(stockEntity);
         // THEN
-        assertNull(articleDao.findById(entityId));
+        assertNull(articleService.findById(entityId));
     }
 
     @Test
@@ -125,7 +115,7 @@ class ArticleDAOTest {
     void findAll(){
         //GIVEN
         //WHEN
-        List<StockEntity> result = articleDao.findAll();
+        List<ArticleEntity> result = articleService.findAll();
         //THEN
         assertNotNull(result);
         assertFalse(result.isEmpty());
@@ -137,17 +127,17 @@ class ArticleDAOTest {
     void findAllByFilters() {
         //GIVEN
         initialize();
-        articleDao.save(stockEntity);
+        articleService.add(stockEntity);
         ArticleDTO dto = new ArticleDTO();
         dto.setNom(stockEntity.getNom());
         dto.setMarque(stockEntity.getMarque());
         //WHEN
-        List<StockEntity> result = articleDao.findAllByFilters(dto);
+        List<ArticleEntity> result = articleService.findAllByFilters(dto);
         //THEN
         assertNotNull(result);
         assertFalse(result.isEmpty());
         assertEquals(1,result.size());
-        articleDao.delete(stockEntity);
+        articleService.delete(stockEntity);
     }
 
     @Test
@@ -155,14 +145,14 @@ class ArticleDAOTest {
     void findAllByName() {
         //GIVEN
         initialize();
-        articleDao.save(stockEntity);
+        articleService.add(stockEntity);
         //WHEN
-        List<StockEntity> result = articleDao.findAllByName(stockEntity.getNom());
+        List<ArticleEntity> result = articleService.findAllByName(stockEntity.getNom());
         //THEN
         assertNotNull(result);
         assertFalse(result.isEmpty());
         assertEquals(1,result.size());
-        articleDao.delete(stockEntity);
+        articleService.delete(stockEntity);
     }
 
     @Test
@@ -170,14 +160,14 @@ class ArticleDAOTest {
     void findAllByMarque() {
         //GIVEN
         initialize();
-        articleDao.save(stockEntity);
+        articleService.add(stockEntity);
         //WHEN
-        List<StockEntity> result = articleDao.findAllByMarque(stockEntity.getMarque());
+        List<ArticleEntity> result = articleService.findAllByMarque(stockEntity.getMarque());
         //THEN
         assertNotNull(result);
         assertFalse(result.isEmpty());
         assertEquals(1,result.size());
-        articleDao.delete(stockEntity);
+        articleService.delete(stockEntity);
     }
 
     @Test
@@ -185,14 +175,14 @@ class ArticleDAOTest {
     void findAllByVendeur() {
         //GIVEN
         initialize();
-        articleDao.save(stockEntity);
+        articleService.add(stockEntity);
         //WHEN
-        List<StockEntity> result = articleDao.findAllByVendeur(stockEntity.getVendeur());
+        List<ArticleEntity> result = articleService.findAllByVendeur(stockEntity.getVendeur());
         //THEN
         assertNotNull(result);
         assertFalse(result.isEmpty());
         assertEquals(1,result.size());
-        articleDao.delete(stockEntity);
+        articleService.delete(stockEntity);
     }
 
     @Test
@@ -200,14 +190,14 @@ class ArticleDAOTest {
     void findAllByType() {
         //GIVEN
         initialize();
-        articleDao.save(stockEntity);
+        articleService.add(stockEntity);
         //WHEN
-        List<StockEntity> result = articleDao.findAllByType(stockEntity.getType());
+        List<ArticleEntity> result = articleService.findAllByType(stockEntity.getType());
         //THEN
         assertNotNull(result);
         assertFalse(result.isEmpty());
         assertEquals(1,result.size());
-        articleDao.delete(stockEntity);
+        articleService.delete(stockEntity);
     }
 
     @Test
@@ -215,14 +205,14 @@ class ArticleDAOTest {
     void findAllByColor() {
         //GIVEN
         initialize();
-        articleDao.save(stockEntity);
+        articleService.add(stockEntity);
         //WHEN
-        List<StockEntity> result = articleDao.findAllByColor(stockEntity.getCouleur());
+        List<ArticleEntity> result = articleService.findAllByColor(stockEntity.getCouleur());
         //THEN
         assertNotNull(result);
         assertFalse(result.isEmpty());
         assertEquals(1,result.size());
-        articleDao.delete(stockEntity);
+        articleService.delete(stockEntity);
     }
 
     @Test
@@ -230,13 +220,13 @@ class ArticleDAOTest {
     void findAllByCategorie() {
         //GIVEN
         initialize();
-        articleDao.save(stockEntity);
+        articleService.add(stockEntity);
         //WHEN
-        List<StockEntity> result = articleDao.findAllByCategorie(stockEntity.getCategorie());
+        List<ArticleEntity> result = articleService.findAllByCategorie(stockEntity.getCategorie());
         //THEN
         assertNotNull(result);
         assertFalse(result.isEmpty());
         assertEquals(1,result.size());
-        articleDao.delete(stockEntity);
+        articleService.delete(stockEntity);
     }
 }

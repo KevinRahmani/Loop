@@ -1,11 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="model.beans.StockEntity" %>
+<%@ page import="model.beans.ArticleEntity" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <%
-    StockEntity product = (StockEntity) request.getAttribute("product");
+    ArticleEntity product = (ArticleEntity) request.getAttribute("product");
 %>
 
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -51,7 +52,7 @@
                 </button>
                 <button class="fa-solid fa-minus button_rose" id="minus"></button>
                 <button class="fa-solid fa-plus button_rose" id="plus"></button>
-                <input type="text" readonly="readonly" class="number_product" id="<?php echo $product['id']; ?>"
+                <input type="text" readonly="readonly" class="number_product" id="<%=product.getId()%>"
                        value="0"/>
             </div>
             <hr>

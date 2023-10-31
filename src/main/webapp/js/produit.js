@@ -29,7 +29,7 @@ $(document).ready(function () {
         if (idButton === 'plus') {
             $.ajax({
                 type: "GET",
-                url: "verifStock-servlet",
+                url: "verifyStock-servlet",
                 data: {
                     'id': idproduct,
                 },
@@ -60,7 +60,7 @@ $(document).ready(function () {
             if (parseInt(kids[3].value) > 0) {
                 $.ajax({
                     type: "GET",
-                    url: "",
+                    url: "modifyBasket-servlet",
                     data: {
                         'quantity': kids[3].value,
                         'id': kids[3].getAttribute('id')

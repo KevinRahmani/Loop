@@ -7,23 +7,23 @@ import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import model.beans.StockEntity;
-import model.service.ArticleDAO;
+import model.beans.ArticleEntity;
+import model.service.ArticleService;
 
-@WebServlet(name = "verifStockServlet", value = "/verifStock-servlet")
-public class VerifStockServlet extends HttpServlet {
+@WebServlet(name = "verifyStockServlet", value = "/verifyStock-servlet")
+public class VerifyStockServlet extends HttpServlet {
 
-    private ArticleDAO<StockEntity> articleDAO;
+    private ArticleService<ArticleEntity> articleService;
     public void init() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("stockPersistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        articleDAO = new ArticleDAO<>(StockEntity.class, entityManager);
+        articleService = new ArticleService<>(ArticleEntity.class, entityManager);
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String productId = request.getParameter("id");
 
-        StockEntity product = articleDAO.findById(Integer.parseInt(productId));
+        ArticleEntity product = articleService.findById(Integer.parseInt(productId));
         int stock = product.getStock();
         response.setContentType("text/plain");
         response.getWriter().write(String.valueOf(stock));

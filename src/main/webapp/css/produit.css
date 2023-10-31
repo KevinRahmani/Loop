@@ -5,12 +5,14 @@ html, body
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .resume_produit {
     width: 100%;
     position: relative;
-    margin-top: 14%;
+    margin-top: 3%;
 }
 
 .name {

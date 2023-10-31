@@ -8,33 +8,37 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import model.dao.GenericDAO;
+import model.dto.ArticleDTO;
 
 import java.util.List;
 
-public class ArticleDAO<T> implements GenericDAO<T> {
+public class ArticleService<T> implements GenericDAO<T> {
     private final Class<T> entityClass;
     private final EntityManager entityManager;
 
-    public ArticleDAO(Class<T> entityClass, EntityManager entityManager) {
+    public ArticleService(Class<T> entityClass, EntityManager entityManager) {
         this.entityClass = entityClass;
         this.entityManager = entityManager;
     }
 
     //TO DO : verifier si les champs de l'entité ne soient pas nuls avant de persist
     @Override
-    public T create(T entity) {
-        entityManager.persist(entity);
-        return entity;
-    }
-
-    @Override
     public T findById(int id) {
         return entityManager.find(entityClass, id);
     }
 
     @Override
-    public void save(T entity) {
-        entityManager.persist(entity);
+    public void add(T entity) {
+        try {
+            if (ValidationService.validateEntity(entity)) {
+                entityManager.persist(entity);
+            } else {
+
+                System.out.println("empty");
+            }
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

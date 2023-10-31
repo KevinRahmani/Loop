@@ -9,34 +9,34 @@ import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import model.beans.StockEntity;
-import model.service.ArticleDAO;
+import model.beans.ArticleEntity;
+import model.service.ArticleService;
 
-@WebServlet(name = "modifTypeServlet", value = "/modifType-servlet")
-public class ModifType extends HttpServlet{
-    private ArticleDAO<StockEntity> articleDAO;
+@WebServlet(name = "modifyTypeServlet", value = "/modifyType-servlet")
+public class ModifyTypeServlet extends HttpServlet{
+    private ArticleService<ArticleEntity> articleService;
     public void init() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("stockPersistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        articleDAO = new ArticleDAO<>(StockEntity.class, entityManager);
+        articleService = new ArticleService<>(ArticleEntity.class, entityManager);
     }
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String option = request.getParameter("option");
         String categorie = request.getParameter("categorie");
-        List<StockEntity> data = null;
+        List<ArticleEntity> data = null;
 
         switch(option){
             case "croissant":
-                data = articleDAO.findAllByCategorieAndPriceAsc(categorie);
+                data = articleService.findAllByCategorieAndPriceAsc(categorie);
                 break;
             case "decroissant" :
-                data = articleDAO.findAllByCategorieAndPriceDesc(categorie);
+                data = articleService.findAllByCategorieAndPriceDesc(categorie);
                 break;
             case "marque" :
-                data = articleDAO.findAllByCategoryByBrand(categorie);
+                data = articleService.findAllByCategoryByBrand(categorie);
                 break;
             case "default":
-                data = articleDAO.findAllByCategorie(categorie);
+                data = articleService.findAllByCategorie(categorie);
                 break;
         }
 

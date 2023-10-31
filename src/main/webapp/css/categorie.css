@@ -5,13 +5,15 @@ body, html
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
 .container-body{
     width: 85%;
     height: 600px;
     margin-left: 10%;
-    margin-top: 12%;
+    margin-top: 3%;
     position: relative;
 }
 

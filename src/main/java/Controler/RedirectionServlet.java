@@ -9,17 +9,18 @@ import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import model.beans.StockEntity;
-import model.service.ArticleDAO;
-import model.service.ArticleDTO;
+import model.beans.ArticleEntity;
+import model.service.ArticleService;
+import model.dto.ArticleDTO;
+import model.service.BasketService;
 
 @WebServlet(name = "redirectionServlet", value = "/redirection-servlet")
 public class RedirectionServlet extends HttpServlet {
-    private ArticleDAO<StockEntity> articleDAO;
+    private ArticleService<ArticleEntity> articleService;
     public void init() {
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("default");
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("stockPersistence");
         EntityManager entityManager = entityManagerFactory.createEntityManager();
-        articleDAO = new ArticleDAO<>(StockEntity.class, entityManager);
+        articleService = new ArticleService<>(ArticleEntity.class, entityManager);
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
@@ -30,8 +31,8 @@ public class RedirectionServlet extends HttpServlet {
             requestedPage = "index";
         }
 
-
         switch (requestedPage){
+
             case "index" :
                 getIndex(request, response);
                 break;
@@ -42,6 +43,10 @@ public class RedirectionServlet extends HttpServlet {
 
             case "product" :
                 getProduct(request, response);
+                break;
+
+            case "basket" :
+                getBasket(request, response);
                 break;
 
             default :
@@ -61,10 +66,10 @@ public class RedirectionServlet extends HttpServlet {
         dto.setCategorie("ht");
         dto.setMarque("Apple");
         dto.setType("Téléphones");
-        List<StockEntity> smartphoneList = articleDAO.findAllByFilters(dto);
+        List<ArticleEntity> smartphoneList = articleService.findAllByFilters(dto);
 
         //Watch Carousel List
-        List<StockEntity> watchList = articleDAO.findAllByType("Montres connectées");
+        List<ArticleEntity> watchList = articleService.findAllByType("Montres connectées");
 
         //Set Attribute
         request.setAttribute("smartphoneList", smartphoneList);
@@ -76,7 +81,7 @@ public class RedirectionServlet extends HttpServlet {
     public void getCategorie(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
         String requestedCategorie = request.getParameter("categorie");
 
-        List<StockEntity> listCategorie= articleDAO.findAllByCategorie(requestedCategorie);
+        List<ArticleEntity> listCategorie= articleService.findAllByCategorie(requestedCategorie);
 
         //Set Attribute
         request.setAttribute("listCategorie", listCategorie);
@@ -91,7 +96,7 @@ public class RedirectionServlet extends HttpServlet {
         if(productId != null && !productId.isEmpty()) {
             try {
                 productIdAsInt = Integer.parseInt(productId);
-                StockEntity product = articleDAO.findById(productIdAsInt);
+                ArticleEntity product = articleService.findById(productIdAsInt);
 
                 //Set Attribute
                 request.setAttribute("product", product);
@@ -103,6 +108,26 @@ public class RedirectionServlet extends HttpServlet {
             }
         }
     }
+
+    public void getBasket(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        BasketService basketService = new BasketService(request.getSession());
+        request.setAttribute("basket", basketService.getBasket().getPanier());
+        request.getRequestDispatcher("WEB-INF/basket.jsp").forward(request, response);
+    }
+
+    public static int getParameterAsInt(HttpServletRequest request, String param) {
+        String value = request.getParameter(param);
+        int result = 0;
+        if (value != null) {
+            try {
+                result = Integer.parseInt(value);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        return result;
+    }
+
 
 
 }

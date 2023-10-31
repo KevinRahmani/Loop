@@ -1,14 +1,7 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="model.beans.StockEntity" %>
-<%@ page import="java.util.List" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
-<%
-    @SuppressWarnings("unchecked")
-    List<StockEntity> listCategorie = (List<StockEntity>) request.getAttribute("listCategorie");
-    String categorie = (String) request.getAttribute("categorie");
-%>
-
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -31,9 +24,9 @@
 
     <section class="container-body">
         <div class="fond_accueil">
-            <img src="img/<%=categorie%>/<%=categorie%>.jpg" alt="balbala">
+            <img src="img/${requestScope.categorie}/${requestScope.categorie}.jpg" alt="balbala">
             <div class="container">
-                <div class="titre_section"><%=categorie%></div>
+                <div class="titre_section">${requestScope.categorie}</div>
                 <div class="citation">You want it, Loop will make it</div>
                 <div class="lien_ancre">
                     <a href="#produit">Commander maintenant !</a>
@@ -45,7 +38,7 @@
     <section class="products" id="produit">
         <div class="titre-container">
             <h1 class="titre_produit">NOS DERNIERS PRODUITS :</h1>
-            <select name="<%=categorie%>" id="filter_product">
+            <select name="${requestScope.categorie}" id="filter_product">
                 <option value="default">Selectionner une option</option>
                 <option value="croissant">Prix croissant</option>
                 <option value="decroissant">Prix décroissant</option>
@@ -54,7 +47,7 @@
             </select>
         </div>
         <div class="box-container">
-            <c:forEach items="${listCategorie}" var="product">
+            <c:forEach items="${requestScope.listCategorie}" var="product">
                 <c:if test="${product.stock > 0}">
                     <div class="box">
                         <div class="image">

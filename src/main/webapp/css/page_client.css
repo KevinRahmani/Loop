@@ -1,0 +1,302 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+
+html, body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.title{
+    width: 90%;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 3%;
+    font-size: 30px;
+    margin-left: 4%;
+    text-align: center;
+}
+
+
+.sous_titre{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    margin-left: 25%;
+    width: 50%;
+    height: 4rem;
+}
+
+.sous_titre a {
+    text-decoration: none;
+    color: rgb(40, 57, 212);
+}
+
+
+
+/* partie info user */
+.container_user{
+    width: 50%;
+    margin-left: 27%;
+    margin-top: 5%;
+    border: 1px solid rgb(201, 199, 199);
+    border-radius: 15px;
+    max-height: 12rem;
+    transition: max-height 1s;
+    overflow: hidden;
+}
+
+.container_title{
+    height: 8rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.container_title img{
+    width: 100px;
+    height: 100px;
+    margin-left: 25%;
+}
+
+.title2{
+    padding-left: 15px;
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+}
+
+.sous_titre2{
+    padding-left: 25px;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 5px;
+}
+
+#button_user_info{
+    text-align: left;
+    padding-left: 2rem;
+    font-size: 16px;
+    font-family: 'Quicksand', sans-serif;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 4rem;
+    color: rgb(40, 57, 212);
+    background: none;
+    cursor: pointer;
+    border: none;
+    border-top: 1px solid rgb(201,199,199);
+}
+
+#button_user_info:hover{
+    background-color: #f1efef;
+}
+
+#toggle_user{
+    font-size: 17px;
+    font-family: 'Poppins', sans-serif;
+
+}
+
+#toggle_user > div{
+    margin-top: 1%;
+    padding-left: 20px;
+}
+
+.nbProduct{
+    margin-bottom: 2%;
+}
+
+
+/* partie histo command */
+.container{
+    width: 50%;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 27%;
+    margin-top: 3%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.title_histo{
+    display: inline-block;
+    border: 1px solid rgb(201, 199, 199);
+    border-radius: 15px;
+    width: 45%;
+    max-height: 7rem;
+    transition: max-height 1.2s;
+    overflow: hidden;
+}
+
+
+.container_chevron{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container_chevron i{
+    font-size: 25px;
+    margin-right: 5%;
+    cursor: pointer;
+
+}
+
+#div_histo{
+    height: 3rem;
+    text-align: left;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: 'Quicksand', sans-serif;
+    position: relative;
+    top: 0;
+}
+
+.sous_titre_histo{
+    padding-left: 10px;
+    margin-top: 1%;
+}
+
+#toggle_histo{
+    margin-top: 1%;
+    padding-left: 20px;
+    margin-bottom: 5%;
+}
+
+/* change coord */
+
+.title_coord{
+    border: 1px solid rgb(201, 199, 199);
+    border-radius: 15px;
+    width: 45%;
+    max-height: 7rem;
+    transition: max-height 1.2s;
+    overflow: hidden;
+}
+
+.div_coord{
+    font-size: 20px;
+    padding-left: 2rem;
+    font-weight: 600;
+    padding-top: 1rem   ;
+}
+
+.line_coord{
+    font-size: 17px;
+    padding-left: 1rem;
+    margin-top: 4%;
+}
+
+#form_coord{
+    margin-top: 10%;
+    display: block;
+    margin-left: 3%;
+}
+.coord_1{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1%;
+
+}
+.coord_1 >  input{
+    margin-right: 3%;
+    width: 70%;
+}
+
+.submit_coord{
+    width: 80px;
+    height: 30px;
+    background-color: #fff;
+    color:#18b131;
+    border: 2px solid #18b131;
+    font-size: 15px;
+    border-radius: 15%;
+    cursor: pointer;
+    margin-bottom: 5%;
+    margin-top: 7%;
+    margin-left: 40%;
+}
+
+
+.submit_coord:not([disabled]):hover{
+    background-color:#18b131;
+    border:none;
+    color: #fff;
+    transition: 0.5s;
+}
+
+/* contrat */
+.contrat_info{
+    width: 50%;
+    margin-left: 27%;
+    margin-top: 3.5%;
+    border: 1px solid rgb(201, 199, 199);
+    border-radius: 15px;
+    max-height: 12rem;
+    transition: max-height 1s;
+    overflow: hidden;
+}
+
+.title_contrat{
+    font-size: 20px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    margin-top: 2%;
+    margin-left: 5%;
+}
+
+.contrat_text{
+    margin-top: 3%;
+    margin-left: 2%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+}
+
+
+#container_contrat_button{
+    width: 100%;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#sign{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    text-decoration: underline;
+    color: red;
+}
+
+#container_contrat_button > button{
+    width: 80px;
+    height: 30px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fff;
+    color:rgb(179, 0, 0);
+    border: 2px solid rgb(179, 0, 0);
+    font-size: 15px;
+    border-radius: 15%;
+    cursor: pointer;
+}
+
+#container_contrat_button > button:hover{
+    background-color:rgb(179, 0, 0);
+    border:none;
+    color: #fff;
+    transition: 0.5s;
+}
+
+#erreur{
+    color: red;
+    text-align: center;
+}

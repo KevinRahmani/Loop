@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "stock", schema = "stock_loop", catalog = "")
-public class StockEntity {
+public class ArticleEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "id")
@@ -144,7 +144,7 @@ public class StockEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        StockEntity that = (StockEntity) o;
+        ArticleEntity that = (ArticleEntity) o;
 
         if (id != that.id) return false;
         if (prix != that.prix) return false;
