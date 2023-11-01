@@ -11,8 +11,11 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.beans.ArticleEntity;
+import model.beans.Basket;
 import model.service.ArticleService;
 import model.service.BasketService;
+import utils.ProcessBasketServlet;
+import utils.VerifyData;
 
 
 //CHANGER LES REDIRECTIONS DE REDIRECT SERVLET CA CAUSE PEUT ETRE LE BUG
@@ -28,9 +31,9 @@ public class BasketControllerServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String action = request.getParameter("action");
-        Gson gson = new Gson();
-        JsonObject jsonResponse = new JsonObject();
-        BasketService basketService = new BasketService(request.getSession());
+
+        BasketService basketService = ProcessBasketServlet.getBasketSession(request,response);
+
         String stat="";
         int stockProduct = 0;
 
@@ -44,7 +47,7 @@ public class BasketControllerServlet extends HttpServlet {
 
             case "deleteRow":
                 //delete a row from basket
-                int id = RedirectionServlet.getParameterAsInt(request, "id");
+                int id = VerifyData.getParameterAsInt(request, "id");
                 basketService.delete(articleService.findById(id));
                 stat = "ok";
                 break;
@@ -96,6 +99,19 @@ public class BasketControllerServlet extends HttpServlet {
                 break;
         }
 
+        //Saving the new basket
+        if(action.equals("undo") || VerifyData.isHashMapEmpty(basketService.getBasket().getPanier())){
+            request.getSession().removeAttribute("basket");
+            request.getSession().removeAttribute("hashmapBasket");
+        } else {
+            request.getSession().setAttribute("basket", basketService.getBasket());
+            request.getSession().setAttribute("hashmapBasket", basketService.getBasket().getPanier());
+        }
+
+        //Parameters for the json response
+        Gson gson = new Gson();
+        JsonObject jsonResponse = new JsonObject();
+
         jsonResponse.addProperty("stat", stat);
         jsonResponse.addProperty("stock", stockProduct);
 
@@ -107,5 +123,4 @@ public class BasketControllerServlet extends HttpServlet {
 
     public void destroy() {
     }
-
 }

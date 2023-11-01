@@ -9,6 +9,7 @@ import jakarta.persistence.Persistence;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import model.beans.ClientEntity;
 import model.service.UserService;
 
 //TO DO : A CHAQUE FOIS QUE JE VEUX CHANGER/ AJOUTER QQCH DANS LA BDD JE DOIS : entityManager.getTransaction().begin(); ET LA CLOSE
@@ -40,8 +41,7 @@ public class RegisterControllerServlet extends HttpServlet {
             if(!nom.isEmpty() && !mail.isEmpty() && !address.isEmpty() && !password.isEmpty()){
                 if(!UserService.isAdminEmail(mail) && !UserService.isVendeurEmail(mail)){
                     ClientEntity client = new ClientEntity();
-                    Timestamp time = new Timestamp(System.currentTimeMillis());
-                    client.setUp(nom, password, mail, time, address);
+                    client.setUp(nom, password, mail, address);
                     clientService.add(client);
                     request.getSession().setAttribute("user", client);
                     request.getSession().setAttribute("type", "client");

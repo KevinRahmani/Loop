@@ -2,7 +2,7 @@ package model.beans;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "vendeur", schema = "user_loop", catalog = "")
@@ -25,10 +25,19 @@ public class VendeurEntity {
     private String adresse;
     @Basic
     @Column(name = "datesignup")
-    private Date datesignup;
+    private Timestamp datesignup;
     @Basic
     @Column(name = "nbtotalsales")
     private int nbtotalsales;
+    @Basic
+    @Column(name = "addRight")
+    private int addRight;
+    @Basic
+    @Column(name = "removeRight")
+    private int removeRight;
+    @Basic
+    @Column(name = "modifyRight")
+    private int modifyRight;
 
     public int getId() {
         return id;
@@ -70,11 +79,11 @@ public class VendeurEntity {
         this.adresse = adresse;
     }
 
-    public Date getDatesignup() {
+    public Timestamp getDatesignup() {
         return datesignup;
     }
 
-    public void setDatesignup(Date datesignup) {
+    public void setDatesignup(Timestamp datesignup) {
         this.datesignup = datesignup;
     }
 
@@ -86,20 +95,47 @@ public class VendeurEntity {
         this.nbtotalsales = nbtotalsales;
     }
 
+    public int getAddRight() {
+        return addRight;
+    }
+
+    public void setAddRight(int addRight) {
+        this.addRight = addRight;
+    }
+
+    public int getRemoveRight() {
+        return removeRight;
+    }
+
+    public void setRemoveRight(int removeRight) {
+        this.removeRight = removeRight;
+    }
+
+    public int getModifyRight() {
+        return modifyRight;
+    }
+
+    public void setModifyRight(int modifyRight) {
+        this.modifyRight = modifyRight;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        VendeurEntity that = (VendeurEntity) o;
+        VendeurEntity vendeur = (VendeurEntity) o;
 
-        if (id != that.id) return false;
-        if (nbtotalsales != that.nbtotalsales) return false;
-        if (nom != null ? !nom.equals(that.nom) : that.nom != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-        if (mail != null ? !mail.equals(that.mail) : that.mail != null) return false;
-        if (adresse != null ? !adresse.equals(that.adresse) : that.adresse != null) return false;
-        if (datesignup != null ? !datesignup.equals(that.datesignup) : that.datesignup != null) return false;
+        if (id != vendeur.id) return false;
+        if (nbtotalsales != vendeur.nbtotalsales) return false;
+        if (addRight != vendeur.addRight) return false;
+        if (removeRight != vendeur.removeRight) return false;
+        if (modifyRight != vendeur.modifyRight) return false;
+        if (nom != null ? !nom.equals(vendeur.nom) : vendeur.nom != null) return false;
+        if (password != null ? !password.equals(vendeur.password) : vendeur.password != null) return false;
+        if (mail != null ? !mail.equals(vendeur.mail) : vendeur.mail != null) return false;
+        if (adresse != null ? !adresse.equals(vendeur.adresse) : vendeur.adresse != null) return false;
+        if (datesignup != null ? !datesignup.equals(vendeur.datesignup) : vendeur.datesignup != null) return false;
 
         return true;
     }
@@ -113,6 +149,9 @@ public class VendeurEntity {
         result = 31 * result + (adresse != null ? adresse.hashCode() : 0);
         result = 31 * result + (datesignup != null ? datesignup.hashCode() : 0);
         result = 31 * result + nbtotalsales;
+        result = 31 * result + addRight;
+        result = 31 * result + removeRight;
+        result = 31 * result + modifyRight;
         return result;
     }
 }

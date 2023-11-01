@@ -166,15 +166,7 @@
                     <c:choose>
 
                         <c:when test="${not empty sessionScope.user}">
-                            <c:if test="${sessionScope.type eq 'client'}">
-                                <a href="redirection-servlet?requestedPage=clientPage">Compte Loop</a>
-                            </c:if>
-                            <c:if test="${sessionScope.type eq 'vendeur'}">
-                                <a href="redirection-servlet?requestedPage=sellerPage">Compte Loop</a>
-                            </c:if>
-                            <c:if test="${sessionScope.type eq 'admin'}">
-                                <a href="redirection-servlet?requestedPage=adminPage">Compte Admin</a>
-                            </c:if>
+                            <a href="updateProfile-servlet">Compte Loop</a>
                         </c:when>
                         <c:otherwise>
                             <a href="connectController-servlet">Connexion</a>

@@ -1,8 +1,5 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="model.beans.ArticleEntity" %>
 <%@ page import="model.beans.Basket" %>
-
-<%@ page import="java.util.HashMap" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <html>
@@ -25,7 +22,7 @@
     <%@include file="shared/header.jsp"%>
     <div class="resume_panier">
         <c:choose>
-            <c:when test="${not empty requestScope.basket}">
+            <c:when test="${not empty sessionScope.basket}">
                 <h2>Votre panier :</h2>
                 <table>
                     <tr>
@@ -36,7 +33,7 @@
                         <th>Référence</th>
                         <th>Prix unitaire TTC</th>
                     </tr>
-                    <c:forEach items="${requestScope.basket}" var="entry">
+                    <c:forEach items="${sessionScope.hashmapBasket}" var="entry">
                         <c:set var="article" value="${entry.key}" />
                         <c:set var="quantity" value="${entry.value}" />
                         <tr>
@@ -58,10 +55,13 @@
                 </table>
                 <div class="validation">
                     <button id="annuler">Annuler</button>
-                    <button id="valider">Valider</button>
-                    <button id="opti">Optimiser le panier</button>
+                    <a href="redirection-servlet?requestedPage=invoice" id="valider">Valider</a>
                 </div>
-                <div class="erreur" id="erreur"></div>
+                <div class="erreur" id="erreur">
+                   <c:if test="${not empty requestScope.errAccess}">
+                       ${requestScope.errAccess}
+                   </c:if>
+                </div>
             </c:when>
             <c:otherwise>
                 <h2>Votre panier est vide</h2>

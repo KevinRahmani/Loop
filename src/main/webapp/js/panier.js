@@ -21,28 +21,6 @@ $(document).ready(function () {
 })
 
 
-//Requete AJAX pour vérifier si le client est connecté A IMPLEMENTER
-
-/*$(document).ready(function () {
-    $("#valider").click(function (e) {
-        e.preventDefault();
-        var idErreur = document.getElementById("erreur");
-        $.ajax({
-            url: "",
-            success: function (data) {
-                if (data == 'ok') {
-                    window.location.href = "facture.php";
-                }else{
-                    idErreur.innerHTML = "Vous n'êtes pas connecté, veuillez le faire <a href='connexion.php'>ici</a> pour poursuivre votre achat.";
-                }
-            }
-        });
-    })
-})
-
- */
-
-
 //Requete AJAX pour supprimer une ligne du panier
 $(document).ready(function () {
     $(".bg_none > button").click(function (e) {

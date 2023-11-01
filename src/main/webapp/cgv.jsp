@@ -21,7 +21,7 @@
     <script src="https://kit.fontawesome.com/82e270d318.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <%@include file="shared/header.jsp"%>
+    <%@include file="WEB-INF/shared/header.jsp"%>
 
     <section class="container_body">
 
@@ -270,7 +270,7 @@
             à Amazon engage sa responsabilité civile et/ou pénale. En cas de doute, veuillez contacter un conseiller juridique.</p>
     </section>
 
-    <%@include file="shared/footer.jsp"%>
+    <%@include file="WEB-INF/shared/footer.jsp"%>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/header.js"></script>

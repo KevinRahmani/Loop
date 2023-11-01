@@ -141,4 +141,15 @@ public class ClientEntity {
         result = 31 * result + fidelity;
         return result;
     }
+
+    public void setUp(String nom, String password, String mail, String adresse){
+        setNom(nom);
+        setPassword(password);
+        setMail(mail);
+        setAdresse(adresse);
+        setNbproduct(0);
+        setHistocommand("");
+        setDatesignup(new Timestamp(System.currentTimeMillis()));
+        setFidelity(0);
+    }
 }

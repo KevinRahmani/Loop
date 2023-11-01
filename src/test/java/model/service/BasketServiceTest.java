@@ -16,10 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BasketServiceTest {
-
-    private HttpSession session;
     private BasketService basketService;
-    private Basket basket;
     private ArticleEntity stockEntity;
 
     void initialize(){
@@ -35,28 +32,18 @@ class BasketServiceTest {
         stockEntity.setType("default");
         stockEntity.setVendeur("default");
         stockEntity.setCategorie("default");
-
-        basket = new Basket();
     }
 
     @BeforeEach
     public void setUp() {
-        session = Mockito.mock(HttpSession.class);
-        this.basketService = new BasketService(session);
+        this.basketService = new BasketService(new Basket());
     }
 
-    @AfterEach
-    public void tearDown() {
-        if (session != null) {
-            session.invalidate();
-        }
-    }
     @Test
     void findById() {
         //GIVEN
         initialize();
         //WHEN
-        Mockito.when(session.getAttribute("basket")).thenReturn(basket);
         basketService.add(stockEntity);
         //THEN
         ArticleEntity foundArticle = basketService.findById(stockEntity.getId());
@@ -68,11 +55,10 @@ class BasketServiceTest {
         // GIVEN
         initialize();
         // WHEN
-        Mockito.when(session.getAttribute("basket")).thenReturn(basket);
         basketService.add(stockEntity);
         // THEN
-        ArticleEntity addedArticle = basket.getPanier().keySet().iterator().next();
-        int quantity = basket.getPanier().get(addedArticle);
+        ArticleEntity addedArticle = basketService.getBasket().getPanier().keySet().iterator().next();
+        int quantity = basketService.getBasket().getPanier().get(addedArticle);
         assertEquals(stockEntity, addedArticle);
         assertEquals(1, quantity);
     }
@@ -84,11 +70,10 @@ class BasketServiceTest {
         initialize();
         int quantity = 5;
         // WHEN
-        Mockito.when(session.getAttribute("basket")).thenReturn(basket);
         basketService.addQuantity(stockEntity,quantity);
         // THEN
-        ArticleEntity addedArticle = basket.getPanier().keySet().iterator().next();
-        int actualQuantity = basket.getPanier().get(addedArticle);
+        ArticleEntity addedArticle = basketService.getBasket().getPanier().keySet().iterator().next();
+        int actualQuantity = basketService.getBasket().getPanier().get(addedArticle);
         assertEquals(stockEntity, addedArticle);
         assertEquals(quantity, actualQuantity);
     }
@@ -98,11 +83,10 @@ class BasketServiceTest {
         // GIVEN
         initialize();
         // WHEN
-        Mockito.when(session.getAttribute("basket")).thenReturn(basket);
         basketService.add(stockEntity);
         basketService.delete(stockEntity);
         // THEN
-        assertTrue(basket.getPanier().isEmpty());
+        assertTrue(basketService.getBasket().getPanier().isEmpty());
     }
 
     @Test
@@ -112,12 +96,11 @@ class BasketServiceTest {
         int initialQuantity = 5;
         int quantityToRemove = 3;
         // WHEN
-        Mockito.when(session.getAttribute("basket")).thenReturn(basket);
         basketService.addQuantity(stockEntity, initialQuantity);
         basketService.deleteQuantity(stockEntity, quantityToRemove);
         // THEN
         int expectedQuantity = initialQuantity - quantityToRemove;
-        int quantity = basket.getPanier().get(stockEntity);
+        int quantity = basketService.getBasket().getPanier().get(stockEntity);
         assertEquals(expectedQuantity, quantity);
     }
 
@@ -127,7 +110,6 @@ class BasketServiceTest {
         initialize();
         ArticleEntity secondStockEntity = new ArticleEntity();
         // WHEN
-        Mockito.when(session.getAttribute("basket")).thenReturn(basket);
         basketService.addQuantity(stockEntity,2);
         basketService.addQuantity(secondStockEntity,2);
         List<ArticleEntity> articleList = basketService.findAll();
@@ -146,7 +128,6 @@ class BasketServiceTest {
         ArticleEntity secondArticle = new ArticleEntity();
         secondArticle.setPrix(20);
         // WHEN
-        Mockito.when(session.getAttribute("basket")).thenReturn(basket);
         basketService.addQuantity(firstArticle, 2);
         basketService.addQuantity(secondArticle, 3);
         // THEN

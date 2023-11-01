@@ -43,6 +43,7 @@ public class ArticleEntity {
     @Column(name = "categorie")
     private String categorie;
 
+
     public int getId() {
         return id;
     }
@@ -177,5 +178,19 @@ public class ArticleEntity {
         result = 31 * result + (image != null ? image.hashCode() : 0);
         result = 31 * result + (categorie != null ? categorie.hashCode() : 0);
         return result;
+    }
+
+    public void setUp(String nom, String marque, int prix, String vendeur, int stock, String type, String couleur, String description, int sales, String image, String categorie) {
+        this.nom = nom;
+        this.marque = marque;
+        this.prix = prix;
+        this.vendeur = vendeur;
+        this.stock = stock;
+        this.type = type;
+        this.couleur = couleur;
+        this.description = description;
+        this.sales = sales;
+        this.image = image;
+        this.categorie = categorie;
     }
 }

@@ -11,6 +11,8 @@ import jakarta.servlet.http.*;
 import model.beans.ArticleEntity;
 import model.service.ArticleService;
 import model.service.BasketService;
+import utils.ProcessBasketServlet;
+import utils.VerifyData;
 
 import java.io.IOException;
 
@@ -25,12 +27,13 @@ public class ModifyBasketServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        BasketService basketService = new BasketService(request.getSession());
+
+        BasketService basketService = ProcessBasketServlet.getBasketSession(request,response);
         Gson gson = new Gson();
         JsonObject jsonResponse = new JsonObject();
 
-        int id = RedirectionServlet.getParameterAsInt(request, "id");
-        int quantity = RedirectionServlet.getParameterAsInt(request, "quantity");
+        int id = VerifyData.getParameterAsInt(request, "id");
+        int quantity = VerifyData.getParameterAsInt(request, "quantity");
 
         ArticleEntity article = articleService.findById(id);
         ArticleEntity articleInBasket = basketService.findById(id);
@@ -55,6 +58,11 @@ public class ModifyBasketServlet extends HttpServlet {
             }
         }
 
+        //saving the new Basket
+        request.getSession().setAttribute("basket", basketService.getBasket());
+        request.getSession().setAttribute("hashmapBasket", basketService.getBasket().getPanier());
+
+        //Parameters for the json response
         jsonResponse.addProperty("status", status);
         jsonResponse.addProperty("stock", stock);
 

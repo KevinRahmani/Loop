@@ -77,9 +77,13 @@ td{
     background-color: #fff;
     color:#18b131;
     border: 2px solid #18b131;
-    font-size: 18px;
+    font-size: 20px;
     border-radius: 15%;
     cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 40px;
 }
 
 .validation #annuler{

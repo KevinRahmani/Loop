@@ -13,6 +13,7 @@ public class DisconnectControllerServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.getSession().removeAttribute("user");
         request.getSession().removeAttribute("type");
+        request.getSession().removeAttribute("errModify");
 
         response.sendRedirect("redirection-servlet");
     }

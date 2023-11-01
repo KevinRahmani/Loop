@@ -10,9 +10,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.beans.ArticleEntity;
+import model.beans.Basket;
+import model.beans.ClientEntity;
 import model.service.ArticleService;
 import model.dto.ArticleDTO;
 import model.service.BasketService;
+import utils.ProcessBasketServlet;
 
 @WebServlet(name = "redirectionServlet", value = "/redirection-servlet")
 public class RedirectionServlet extends HttpServlet {
@@ -24,8 +27,6 @@ public class RedirectionServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        response.setContentType("text/html");
-
         String requestedPage = request.getParameter("requestedPage");
         if (requestedPage == null || requestedPage.isEmpty()) {
             requestedPage = "index";
@@ -49,12 +50,14 @@ public class RedirectionServlet extends HttpServlet {
                 getBasket(request, response);
                 break;
 
+            case "invoice":
+                getInvoice(request,response);
+                break;
+
             default :
                 getIndex(request,response);
                 break;
-
         }
-
     }
 
     public void destroy() {
@@ -110,24 +113,32 @@ public class RedirectionServlet extends HttpServlet {
     }
 
     public void getBasket(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        BasketService basketService = new BasketService(request.getSession());
-        request.setAttribute("basket", basketService.getBasket().getPanier());
         request.getRequestDispatcher("WEB-INF/basket.jsp").forward(request, response);
     }
 
-    public static int getParameterAsInt(HttpServletRequest request, String param) {
-        String value = request.getParameter(param);
-        int result = 0;
-        if (value != null) {
-            try {
-                result = Integer.parseInt(value);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
+
+    public void getInvoice(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        String userType = (String) request.getSession().getAttribute("type");
+
+        if(userType == null || userType.equals("admin") || userType.equals("vendeur")){
+            request.setAttribute("errAccess", "Veuillez vous connecter avec un compte client pour passer commande !");
+            getBasket(request,response);
+
+        } else if(userType.equals("client")){
+            ClientEntity client = (ClientEntity) request.getSession().getAttribute("user");
+            BasketService basketService = ProcessBasketServlet.getBasketSession(request,response);
+
+            double totalPriceHT = basketService.getTotalPriceHT();
+            double totalPriceTTC = basketService.getTotalPrice();
+
+            //necessary point to get reduction
+            if(client.getFidelity() > 500){
+                request.setAttribute("fidelity", true);
             }
+
+            request.setAttribute("totalPriceHT", totalPriceHT);
+            request.setAttribute("totalPriceTTC", totalPriceTTC);
+            request.getRequestDispatcher("WEB-INF/invoice.jsp").forward(request, response);
         }
-        return result;
     }
-
-
-
 }

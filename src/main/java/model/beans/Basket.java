@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Basket {
-    private HashMap<ArticleEntity, Integer> basket;
+    public HashMap<ArticleEntity, Integer> basket;
 
     public Basket() {
         basket = new HashMap<>();

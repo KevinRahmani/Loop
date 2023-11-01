@@ -13,16 +13,13 @@ import java.util.Map;
 public class BasketService implements GenericDAO<ArticleEntity> {
 
     private Basket basket;
-    private final HttpSession session;
 
-    public BasketService(HttpSession session){
-        this.session = session;
+    public BasketService(Basket basket){
+        this.basket = basket;
     }
-
 
     @Override
     public ArticleEntity findById(int id) {
-        load();
         for(ArticleEntity article : basket.getPanier().keySet()){
             if(article.getId() == id){
                 return article;
@@ -34,25 +31,21 @@ public class BasketService implements GenericDAO<ArticleEntity> {
     //add one article to basket
     @Override
     public void add(ArticleEntity entity) {
-        load();
         if (basket.getPanier().containsKey(entity)) {
             int existingQuantity = basket.getPanier().get(entity);
             basket.getPanier().put(entity, existingQuantity + 1);
         } else {
             basket.getPanier().put(entity, 1);
         }
-        save();
     }
 
     public void addQuantity(ArticleEntity article, int quantity) {
-        load();
         if (basket.getPanier().containsKey(article)) {
             int currentQuantity = basket.getArticleQuantity(article);
             basket.getPanier().put(article, (currentQuantity+quantity));
         } else {
             basket.getPanier().put(article, quantity);
         }
-        save();
     }
 
     //not implemented
@@ -64,12 +57,9 @@ public class BasketService implements GenericDAO<ArticleEntity> {
     //delete entire row
     @Override
     public void delete(ArticleEntity entity) {
-        load();
         basket.getPanier().remove(entity);
-        save();
     }
     public void deleteQuantity(ArticleEntity article, int quantity){
-       load();
         if (basket.getPanier().containsKey(article)) {
             int currentQuantity = basket.getArticleQuantity(article);
             if (currentQuantity > quantity) {
@@ -77,39 +67,20 @@ public class BasketService implements GenericDAO<ArticleEntity> {
             } else {
                 basket.getPanier().remove(article);
             }
-            save();
         }
     }
 
     @Override
     public List<ArticleEntity> findAll() {
-        load();
         return new ArrayList<>(basket.getPanier().keySet());
     }
 
     public void clearBasketService() {
-        load();
         basket.clearBasket();
-        save();
-    }
-
-    private void load()
-    {
-        basket = (Basket) session.getAttribute("basket");
-        System.out.println(basket == null);
-        if (basket == null ){
-            basket = new Basket();
-        }
-    }
-
-    private void save()
-    {
-        session.setAttribute("basket", basket);
     }
 
     public Basket getBasket()
     {
-        load();
         return basket;
     }
 
@@ -127,6 +98,17 @@ public class BasketService implements GenericDAO<ArticleEntity> {
         return totalPrice;
     }
 
+    public double getTotalPriceHT() {
+        double totalPrice = 0;
 
+        for (HashMap.Entry<ArticleEntity, Integer> entry : basket.getPanier().entrySet()) {
+            ArticleEntity article = entry.getKey();
+            int quantity = entry.getValue();
+            double unitPrice = article.getPrix() * 0.8;
+            double articleTotalPrice = unitPrice * quantity;
+            totalPrice += articleTotalPrice;
+        }
 
+        return totalPrice;
+    }
 }

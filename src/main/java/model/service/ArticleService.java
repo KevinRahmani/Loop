@@ -9,6 +9,7 @@ import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import model.dao.GenericDAO;
 import model.dto.ArticleDTO;
+import utils.VerifyData;
 
 import java.util.List;
 
@@ -30,7 +31,7 @@ public class ArticleService<T> implements GenericDAO<T> {
     @Override
     public void add(T entity) {
         try {
-            if (ValidationService.validateEntity(entity)) {
+            if (VerifyData.validateEntity(entity)) {
                 entityManager.persist(entity);
             } else {
 

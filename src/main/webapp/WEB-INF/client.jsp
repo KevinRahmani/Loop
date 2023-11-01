@@ -21,7 +21,7 @@
 
        <%@include file="shared/header.jsp"%>
         <h2 class="title">Bonjour ${sessionScope.user.nom}, ravis de vous revoir</h2>
-        <div class="sous_titre">Gérez vos informations, ainsi que la confidentialité et la sécurité de vos données pour profiter au mieux des services Loop. <a href="about_us.jsp">En savoir plus</a></div>
+        <div class="sous_titre">Gérez vos informations, ainsi que la confidentialité et la sécurité de vos données pour profiter au mieux des services Loop. <a href="../about_us.jsp">En savoir plus</a></div>
 
         <!-- info client -->
         <div class="container_user">
@@ -59,59 +59,33 @@
                     <i class="fa-solid fa-chevron-down" id="chevron2"></i>
                 </div>
                 <div class="line_coord">Un changement dans vos coordonnées ?</div>
-                <form method="POST" action="U" class="notActive" id="form_coord">
+                <form method="POST" action="updateProfile-servlet" class="notActive" id="form_coord">
                     <div class="coord_1">
-                        <label for="nom">Nom :</label><input type="text" value="<?php echo $_SESSION['user']['nom'];?>" placeholder="Nom" name="nom">
+                        <label for="nom">Nom :</label><input type="text" id="nom" value="${sessionScope.user.nom}" placeholder="Nom" name="nom">
                     </div>
                     <div class="coord_1">
-                        <label for="mail">Mail : </label><input type="email" value="<?php echo $_SESSION['user']['mail'];?>" placeholder="Mail" name="mail">
+                        <label for="mail">Mail : </label><input type="email" id="mail" value="${sessionScope.user.mail}" placeholder="Mail" name="mail">
                     </div>
                     <div class="coord_1">
-                        <label for="password"> Password : </label><input type="password" value="<?php echo $_SESSION['user']['password'];?>" placeholder="Password" name="password">
+                        <label for="password"> Password : </label><input type="password" id="password" value="${sessionScope.user.password}" placeholder="Password" name="password">
                     </div>
                     <div class="coord_1">
-                        <label for="adresse">Adresse : </label><input type="text" value="<?php echo $_SESSION['user']['adresse'];?>" placeholder="Adresse" name="adresse" >
+                        <label for="adresse">Adresse : </label><input type="text" id="adresse" value="${sessionScope.user.adresse}" placeholder="Adresse" name="adresse" >
                     </div>
                     <input type="submit" value="Envoyer" class="submit_coord">
-                    <div id="erreur"></div>
+                    <div id="erreur">
+                        <c:if test="${not empty requestScope.err}">
+                            ${requestScope.err}
+                        </c:if>
+                    </div>
                 </form>
             </div>
         </div>
 
-        <!-- contrat Loop -->
-        <div class="contrat_info">
-            <div class="container_chevron">
-                <div class="title_contrat">Abonnement premium</div>
-                <i class="fa-solid fa-chevron-down" id="chevron3"></i>
-            </div>
-            <div class="contrat_text">En souscrivant à l'abonnement premium Loop, vous bénéficierez de nombreux avantages, comme par exemple des réductions sur vos achats, des frais de livraisons offerts et une livraison express à partir de seulement 9,99 euros par an.</div>
-            <div id="container_contrat_button" class="notActive">
-                <div id="sign">
-                    <?php
-                                        if($_SESSION['user']['contrat'] == 0 && $_SESSION['connecte'] == 1){
-                                            echo "Signer le contrat avec Loop (attention cette action est irréversible) : </div><button class='contrat_Loop' id='contrat_Loop'>Signer</button>" ;
-                    }
-                    else if($_SESSION['user']['contrat'] == 1 && $_SESSION['connecte'] == 1){
-                    echo "Vous possédez déjà un contrat avec Loop, resigner pour 1 an ? (9,99 €)</div><button class='contrat_Loop' id='contrat_Loop'>Re-sign</button>";
-                }
-                ?>
-            </div>
-        </div>
+      <%@include file="shared/footer.jsp"%>
 
-        <?php
-
-                        include("php/footer.php");
-                    } else{
-                        echo "<h2> Veuillez quitter la page, vous n'etes pas un client</h2>";
-        }
-        } else{
-        echo "<h2>Veuillez quitter cette page, vous n'etes pas autorisé</h2>";
-        }
-        ?>
-
-
-<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<script src="js/header.js"></script>
-<script src="js/page_client.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="js/header.js"></script>
+    <script src="js/page_client.js"></script>
 </body>
 </html>
