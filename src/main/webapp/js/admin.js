@@ -111,13 +111,15 @@ var title_mail = document.querySelector(".title_mail");
 
 button_mail.addEventListener("click", () => {
     var request = new XMLHttpRequest();
-    request.open("POST","php/mail_all", true);
-    request.onload = (response) => {
-        var response = request.responseText;
-        if(response == "ok"){
-            title_mail.innerHTML = "Envoyer un mail promotionnel à tous les clients : Envoie réussi";
+    request.open("GET","mailController-servlet", true);
+    request.onload = function () {
+        if (request.status >= 200 && request.status < 400) {
+            var data = request.responseText;
+            if(data === "ok"){
+                title_mail.innerHTML = "Envoyer un mail promotionnel à tous les clients : Envoie réussi";
+            }
         } else {
-            title_mail.innerHTML = "Envoyer un mail promotionnel à tous les clients " + response;
+            title_mail.innerHTML = "Envoyer un mail promotionnel à tous les clients échoué";
 
         }
     }

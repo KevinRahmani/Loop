@@ -3,6 +3,8 @@ package model.service;
 import jakarta.persistence.EntityManager;
 
 import java.util.ArrayList;
+
+import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
@@ -181,6 +183,19 @@ public class ArticleService<T> implements GenericDAO<T> {
 
         return entityManager.createQuery(cq).getResultList();
     }
+
+    public T findByCategorieAndMaxSales(String category) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<T> cq = cb.createQuery(entityClass);
+        Root<T> root = cq.from(entityClass);
+        cq.select(root);
+        cq.where(cb.equal(root.get("categorie"), category));
+        cq.orderBy(cb.desc(root.get("sales")));
+
+        TypedQuery<T> query = entityManager.createQuery(cq).setMaxResults(1);
+        return query.getSingleResult();
+    }
+
 
 
 }

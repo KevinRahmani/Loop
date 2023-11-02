@@ -45,6 +45,8 @@ public class RegisterControllerServlet extends HttpServlet {
                     clientService.add(client);
                     request.getSession().setAttribute("user", client);
                     request.getSession().setAttribute("type", "client");
+                    MailControllerServlet.sendMail(request,response,"inscription", client);
+
                     response.sendRedirect("redirection-servlet");
                 } else {
                     request.setAttribute("errRegister", "Veuillez choisir un nom de domaine différent");

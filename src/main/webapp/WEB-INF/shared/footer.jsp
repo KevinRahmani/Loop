@@ -5,7 +5,7 @@
     <div class="container-footer">
         <p>Une MarketPlace efficace, faites-vous plaisir avec tous nos produits et services ! </p>
         <p>
-            <a href="about_us.jsp">A propos de nous</a>   |   <a href="produitsPopulaires.jsp">Nos produits populaires</a>  |   <a href="../../collaborator.jsp">Nos collaborateurs</a>   |   <a href="../../cgv.jsp">Conditions générales de vente et d'utilisation</a>
+            <a href="redirection-servlet?requestedPage=about_us">A propos de nous</a>   |   <a href="popularProduct-servlet">Nos produits populaires</a>  |   <a href="redirection-servlet?requestedPage=collaborator">Nos collaborateurs</a>   |   <a href="redirection-servlet?requestedPage=cgv">Conditions générales de vente et d'utilisation</a>
         </p>
 
 

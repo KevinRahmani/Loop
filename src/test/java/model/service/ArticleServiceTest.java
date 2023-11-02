@@ -229,4 +229,19 @@ class ArticleServiceTest {
         assertEquals(1,result.size());
         articleService.delete(stockEntity);
     }
+
+    @Test
+    @DisplayName("Should findByCategorieAndMaxSales")
+    void findByCategorieAndMaxSales() {
+        //GIVEN
+        initialize();
+        stockEntity.setSales(10000); //suppose it's the highest sale
+        articleService.add(stockEntity);
+        //WHEN
+        ArticleEntity result = articleService.findByCategorieAndMaxSales(stockEntity.getCategorie());
+        //THEN
+        assertNotNull(result);
+        assertEquals(result,stockEntity);
+        articleService.delete(stockEntity);
+    }
 }

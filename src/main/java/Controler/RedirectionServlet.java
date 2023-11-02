@@ -54,6 +54,18 @@ public class RedirectionServlet extends HttpServlet {
                 getInvoice(request,response);
                 break;
 
+            case "about_us":
+                request.getRequestDispatcher("WEB-INF/about_us.jsp").forward(request, response);
+                break;
+
+            case "cgv":
+                request.getRequestDispatcher("WEB-INF/cgv.jsp").forward(request, response);
+                break;
+
+            case "collaborator":
+                request.getRequestDispatcher("WEB-INF/collaborator.jsp").forward(request, response);
+                break;
+
             default :
                 getIndex(request,response);
                 break;

@@ -1,11 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: rahma
-  Date: 31/10/2023
-  Time: 15:11
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -21,7 +18,7 @@
     <script src="https://kit.fontawesome.com/82e270d318.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <%@include file="WEB-INF/shared/header.jsp"%>
+    <%@include file="shared/header.jsp"%>
 
     <section class="container_body">
         <h1>A propos de nous</h1>
@@ -49,7 +46,7 @@
     </section>
 
 
-    <%@include file="WEB-INF/shared/footer.jsp"%>
+    <%@include file="shared/footer.jsp"%>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="js/header.js"></script>

@@ -105,8 +105,17 @@ public class CommandControllerServlet extends HttpServlet{
                 clientService.update(client);
             }
 
+            //mail to send
+            request.getSession().setAttribute("totalPriceTTC", totalPriceTTC);
+            MailControllerServlet.sendMail(request,response,"command", client);
+
             entityManagerUser.getTransaction().commit();
             entityManagerStock.getTransaction().commit();
+
+            //delete session attribute basket and hashmapBasket
+            request.getSession().removeAttribute("basket");
+            request.getSession().removeAttribute("hashmapBasket");
+            request.getSession().removeAttribute("totalPriceTTC");
 
             response.setContentType("text/plain");
             response.getWriter().write(status);

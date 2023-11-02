@@ -159,8 +159,8 @@
             </div>
             <ol>
                 <li><a href="redirection-servlet">Accueil</a></li>
-                <li><a href="contact.jsp">Contact</a></li>
-                <li><a href="produitsPopulaires.jsp">Best-sellers</a></li>
+                <li><a href="contactController-servlet">Contact</a></li>
+                <li><a href="popularProduct-servlet">Best-sellers</a></li>
 
                 <li>
                     <c:choose>

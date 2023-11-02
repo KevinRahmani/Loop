@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -19,7 +21,7 @@
     
     <%@include file="shared/header.jsp"%>
     <h2 class="title">Bonjour Administrateur ${sessionScope.user.nom}, ravis de vous revoir</h2>
-    <div class="sous_titre">Gérez vos informations, ainsi que la confidentialité et la sécurité de vos données pour profiter au mieux des services Loop. <a href="../about_us.jsp">En savoir plus</a></div>
+    <div class="sous_titre">Gérez vos informations, ainsi que la confidentialité et la sécurité de vos données pour profiter au mieux des services Loop. <a href="about_us.jsp">En savoir plus</a></div>
     
     <!-- info admin -->
     <div class="container_user">

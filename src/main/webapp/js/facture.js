@@ -17,13 +17,13 @@ const buttonCommand = document.getElementById("confirm");
 const errorModif = document.querySelector(".message_info");
 
 buttonCommand.addEventListener("click", function(e){
-     e.preventDefault();
-     if(section.classList.contains("active")){
-         section.classList.remove("active")
-     }
+    e.preventDefault();
+    if(section.classList.contains("active")){
+     section.classList.remove("active")
+    }
 
-     var request = new XMLHttpRequest();
-     request.open('GET',"commandController-servlet", true);
+    var request = new XMLHttpRequest();
+    request.open('GET',"commandController-servlet", true);
     request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
             var data = request.responseText; // Récupérer la réponse
@@ -39,5 +39,5 @@ buttonCommand.addEventListener("click", function(e){
             errorModif.innerHTML = "Erreur lors de la requête : " + request.status;
         }
     }
-     request.send();
+    request.send();
 })
