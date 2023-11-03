@@ -56,28 +56,53 @@ public class UpdateProfileServlet extends HttpServlet{
             String adresse = request.getParameter("adresse");
             String typeUser = (String) request.getSession().getAttribute("type");
 
-            if(password != null && mail !=null && nom != null && adresse !=null
-                    && !password.isEmpty() && !mail.isEmpty() && !nom.isEmpty() && !adresse.isEmpty()) {
-                    if(typeUser.equals("admin")){
-                        AdminEntity admin = (AdminEntity) request.getSession().getAttribute("user");
-                        admin.setNom(nom);admin.setPassword(password);admin.setMail(mail);admin.setAdresse(adresse);
-                        adminService.update(admin);
-                        entityManagerUser.getTransaction().commit();
-                        request.getSession().setAttribute("user", admin);
-                    } else if(typeUser.equals("vendeur")){
-                        VendeurEntity vendeur = (VendeurEntity) request.getSession().getAttribute("user");
-                        vendeur.setNom(nom);vendeur.setPassword(password);vendeur.setMail(mail);vendeur.setAdresse(adresse);
-                        vendeurService.update(vendeur);
-                        entityManagerUser.getTransaction().commit();
-                        request.getSession().setAttribute("user", vendeur);
-                    } else {
-                        ClientEntity client = (ClientEntity) request.getSession().getAttribute("user");
-                        client.setNom(nom);client.setPassword(password);client.setMail(mail);client.setAdresse(adresse);
-                        clientService.update(client);
-                        entityManagerUser.getTransaction().commit();
-                        request.getSession().setAttribute("user", client);
-                    }
-                    response.sendRedirect("updateProfile-servlet");
+            //verify if parameters not null and not empty
+            if(VerifyData.verifyParameters(password,mail,nom,adresse,"testSake","testSake")) {
+                switch (typeUser){
+                    case "admin":
+                        if(!mail.endsWith("@adminloop.com")){
+                            AdminEntity admin = (AdminEntity) request.getSession().getAttribute("user");
+                            admin.setNom(nom);admin.setPassword(password);admin.setMail(mail);admin.setAdresse(adresse);
+                            adminService.update(admin);
+                            entityManagerUser.getTransaction().commit();
+                            request.getSession().setAttribute("user", admin);
+                            response.sendRedirect("updateProfile-servlet");
+                        } else {
+                            request.setAttribute("err", "Le nom de domaine doit etre @adminloop.com");
+                            doGet(request, response);
+                        }
+                        break;
+
+
+                    case "vendeur":
+                        if(!mail.endsWith("@loop.com")){
+                            VendeurEntity vendeur = (VendeurEntity) request.getSession().getAttribute("user");
+                            vendeur.setNom(nom);vendeur.setPassword(password);vendeur.setMail(mail);vendeur.setAdresse(adresse);
+                            vendeurService.update(vendeur);
+                            entityManagerUser.getTransaction().commit();
+                            request.getSession().setAttribute("user", vendeur);
+                            response.sendRedirect("updateProfile-servlet");
+                        } else {
+                            request.setAttribute("err", "Le nom de domaine doit etre @loop.com");
+                            doGet(request, response);
+                        }
+                        break;
+
+
+                    case "client":
+                        if(VerifyData.isValidMail(mail) && !VerifyData.isTakenMail(mail,clientService)){
+                            ClientEntity client = (ClientEntity) request.getSession().getAttribute("user");
+                            client.setNom(nom);client.setPassword(password);client.setMail(mail);client.setAdresse(adresse);
+                            clientService.update(client);
+                            entityManagerUser.getTransaction().commit();
+                            request.getSession().setAttribute("user", client);
+                            response.sendRedirect("updateProfile-servlet");
+                        } else {
+                            request.setAttribute("err", "Veuillez rentrer une adresse mail valide et non prise");
+                            doGet(request, response);
+                        }
+                        break;
+                }
             } else {
                 request.setAttribute("err", "Veuillez remplir tous les champs");
                 doGet(request, response);

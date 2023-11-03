@@ -20,59 +20,68 @@ import utils.ProcessBasketServlet;
 @WebServlet(name = "redirectionServlet", value = "/redirection-servlet")
 public class RedirectionServlet extends HttpServlet {
     private ArticleService<ArticleEntity> articleService;
+    private EntityManager entityManager;
     public void init() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("stockPersistence");
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
+        entityManager = entityManagerFactory.createEntityManager();
         articleService = new ArticleService<>(ArticleEntity.class, entityManager);
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String requestedPage = request.getParameter("requestedPage");
-        if (requestedPage == null || requestedPage.isEmpty()) {
-            requestedPage = "index";
+
+        try {
+            if (entityManager == null || !entityManager.isOpen()) {
+                init();
+            }
+
+            String requestedPage = request.getParameter("requestedPage");
+            if (requestedPage == null || requestedPage.isEmpty()) {
+                requestedPage = "index";
+            }
+
+            switch (requestedPage){
+
+                case "index" :
+                    getIndex(request, response);
+                    break;
+
+                case "categorie" :
+                    getCategorie(request,response);
+                    break;
+
+                case "product" :
+                    getProduct(request, response);
+                    break;
+
+                case "basket" :
+                    getBasket(request, response);
+                    break;
+
+                case "invoice":
+                    getInvoice(request,response);
+                    break;
+
+                case "about_us":
+                    request.getRequestDispatcher("WEB-INF/about_us.jsp").forward(request, response);
+                    break;
+
+                case "cgv":
+                    request.getRequestDispatcher("WEB-INF/cgv.jsp").forward(request, response);
+                    break;
+
+                case "collaborator":
+                    request.getRequestDispatcher("WEB-INF/collaborator.jsp").forward(request, response);
+                    break;
+            }
+
+        }catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
         }
-
-        switch (requestedPage){
-
-            case "index" :
-                getIndex(request, response);
-                break;
-
-            case "categorie" :
-                getCategorie(request,response);
-                break;
-
-            case "product" :
-                getProduct(request, response);
-                break;
-
-            case "basket" :
-                getBasket(request, response);
-                break;
-
-            case "invoice":
-                getInvoice(request,response);
-                break;
-
-            case "about_us":
-                request.getRequestDispatcher("WEB-INF/about_us.jsp").forward(request, response);
-                break;
-
-            case "cgv":
-                request.getRequestDispatcher("WEB-INF/cgv.jsp").forward(request, response);
-                break;
-
-            case "collaborator":
-                request.getRequestDispatcher("WEB-INF/collaborator.jsp").forward(request, response);
-                break;
-
-            default :
-                getIndex(request,response);
-                break;
-        }
-    }
-
-    public void destroy() {
     }
 
     public void getIndex(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{

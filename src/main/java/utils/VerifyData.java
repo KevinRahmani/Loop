@@ -1,11 +1,19 @@
 package utils;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import jakarta.servlet.http.HttpServletRequest;
 import model.beans.ArticleEntity;
+import model.beans.ClientEntity;
+import model.dto.UserDTO;
+import model.service.UserService;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class VerifyData {
     public static boolean verifyParameters(String nom, String marque,String type, String couleur,String description, String categorie) {
@@ -77,4 +85,24 @@ public class VerifyData {
         }
         return result;
     }
+
+    public static boolean isValidMail(String email) {
+        String regex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+
+        return matcher.matches();
+    }
+
+    public static boolean isTakenMail(String mail, UserService<ClientEntity> clientService) {
+        UserDTO user = new UserDTO();
+        user.setMail(mail);
+
+        List<ClientEntity> clients = clientService.findAllByFilters(user);
+
+        return !clients.isEmpty();
+    }
+
+
+
 }

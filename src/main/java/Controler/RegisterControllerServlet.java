@@ -11,8 +11,8 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.beans.ClientEntity;
 import model.service.UserService;
+import utils.VerifyData;
 
-//TO DO : A CHAQUE FOIS QUE JE VEUX CHANGER/ AJOUTER QQCH DANS LA BDD JE DOIS : entityManager.getTransaction().begin(); ET LA CLOSE
 @WebServlet(name = "registerControllerServlet", value = "/registerController-servlet")
 public class RegisterControllerServlet extends HttpServlet {
 
@@ -32,22 +32,44 @@ public class RegisterControllerServlet extends HttpServlet {
 
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nom = request.getParameter("nom");
-        String mail = request.getParameter("mail");
-        String address = request.getParameter("adresse");
-        String password = request.getParameter("password");
+        try {
+            if (entityManager == null || !entityManager.isOpen()) {
+                init();
+            }
 
-        if(nom != null && mail !=null && address != null && password != null){
-            if(!nom.isEmpty() && !mail.isEmpty() && !address.isEmpty() && !password.isEmpty()){
-                if(!UserService.isAdminEmail(mail) && !UserService.isVendeurEmail(mail)){
-                    ClientEntity client = new ClientEntity();
-                    client.setUp(nom, password, mail, address);
-                    clientService.add(client);
-                    request.getSession().setAttribute("user", client);
-                    request.getSession().setAttribute("type", "client");
-                    MailControllerServlet.sendMail(request,response,"inscription", client);
+            //Parameters
+            String nom = request.getParameter("nom");
+            String mail = request.getParameter("mail");
+            String address = request.getParameter("adresse");
+            String password = request.getParameter("password");
 
-                    response.sendRedirect("redirection-servlet");
+            //if parameters not null and not empty
+            if (VerifyData.verifyParameters(nom, mail, address, password, "testSake", "testSake")) {
+                //if email not domain email from seller and admin
+                if (!UserService.isAdminEmail(mail) && !UserService.isVendeurEmail(mail)) {
+                    //if email valid
+                    if(VerifyData.isValidMail(mail)){
+                        //verify if mail is already taken
+                        if(!VerifyData.isTakenMail(mail,clientService)){
+                            ClientEntity client = new ClientEntity();
+                            client.setUp(nom, password, mail, address);
+                            clientService.add(client);
+                            entityManager.getTransaction().commit();
+
+                            request.getSession().setAttribute("user", client);
+                            request.getSession().setAttribute("type", "client");
+                            //sending mail
+                            MailControllerServlet.sendMail(request, response, "inscription", client);
+
+                            response.sendRedirect("redirection-servlet");
+                        } else {
+                            request.setAttribute("errRegister", "Adresse mail déjà prise");
+                            doGet(request, response);
+                        }
+                    } else {
+                        request.setAttribute("errRegister", "Veuillez rentrer une adresse mail valide");
+                        doGet(request, response);
+                    }
                 } else {
                     request.setAttribute("errRegister", "Veuillez choisir un nom de domaine différent");
                     doGet(request, response);
@@ -56,11 +78,13 @@ public class RegisterControllerServlet extends HttpServlet {
                 request.setAttribute("errRegister", "Champs manquants");
                 doGet(request, response);
             }
-        } else {
-            request.setAttribute("errRegister", "Veuillez remplir tous les champs");
-            doGet(request, response);
+        }catch (Exception e) {
+            if (entityManager.getTransaction().isActive()) {
+                entityManager.getTransaction().rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            entityManager.close();
         }
-
-        entityManager.close();
     }
 }

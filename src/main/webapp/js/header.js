@@ -15,25 +15,6 @@ sidebarBtn.addEventListener("click", ()=>{
 });
 
 
-/**
-//logout
-var logout = document.getElementById("logout");
-logout.addEventListener("click", (e)=>{
-    e.preventDefault();
-    $.ajax({
-        url: "php/logout.php",
-        success: function (response) {
-            if(response == "ok"){
-                $(location).prop('href', 'index.php')
-            }else{
-                console.log("failed to log out");
-            }
-        },
-        error: function(textStatus, errorThrown) {
-            console.log("AJAX request failed: " + textStatus + ", " + errorThrown);
-        }
-    });
-})
 
 //navbar
 
@@ -48,22 +29,20 @@ loupe.addEventListener("click", (e)=> {
     var value_research = search_produit.value;
     $.ajax({
         type: "GET",
-        url: "php/searchbar.php",
+        url: "searchBarController-servlet",
         data: {
             "task": value_research,
         },
         dataType: "json",
         success: function (response) {
-            if(response.status == "categorie"){
-                window.location.href = "categorie.php?categorie=" + response.research;
-            } else if(response.status == "produit"){
-                window.location.href = "produit.php?categorie="+response.product_categorie+"&id=" + response.research["id"];
+            if(response.status === "ok"){
+                window.location.href = response.result;
             } else {
-                console.log("fail");
-                search_produit.value = response.status;
+                search_produit.value = response.result;
             }
+        },
+        error: function(textStatus, errorThrown) {
+            console.log("AJAX request failed: " + textStatus + ", " + errorThrown);
         }
     });
 })
-
- **/
