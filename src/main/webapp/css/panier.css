@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300&display=swap');
+
+html, body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.resume_panier{
+    width: 80%;
+    height: 100%;
+    margin-left: 15%;
+    margin-top: 3%;
+    min-height: 100vh;
+}
+
+.resume_panier table{
+    height: auto;
+    margin-top: 3%;
+    border-collapse: separate;
+    border-spacing: 0 20px;
+}
+
+th{
+    background-color:black;
+    color: #fff;
+    height: 2rem;
+
+}
+.img_product{
+    width: 260px;
+    height: 225px;
+    object-fit: contain;
+}
+td{
+    width: 10%;
+    text-align: center;
+    background-color: #fff;
+    font-size: 20px;
+}
+
+.bg_none{
+    background-color: #fff;
+}
+
+.bg_none button{
+    width:40px;;
+    height:40px;
+    background-color: #fff;
+    border:1px solid rgb(179, 0, 0);
+    color: rgb(179, 0, 0);
+    border-radius:15%;
+    cursor: pointer;
+}
+
+.bg_none button:hover{
+    background-color: rgb(179, 0, 0);
+    border:none;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.validation{
+    display: flex;
+    width: 100%;
+    margin-top: 3%;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.validation #valider{
+    width: 80px;
+    height: 40px;
+    background-color: #fff;
+    color:#18b131;
+    border: 2px solid #18b131;
+    font-size: 20px;
+    border-radius: 15%;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    line-height: 40px;
+}
+
+.validation #annuler{
+    width: 80px;
+    height: 40px;
+    border: 2px solid rgb(179, 0, 0);
+    background-color: #fff;
+    color: rgb(179, 0, 0);
+    font-size:18px;
+    border-radius: 15%;
+    cursor: pointer;
+}
+
+.validation #opti{
+    width: 200px;
+    height: 40px;
+    background-color: #fff;
+    color:#181bb1;
+    border: 2px solid #181bb1;
+    font-size: 18px;
+    border-radius: 15%;
+    cursor: pointer;
+}
+
+.change_quantity{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.input_btn{
+    background-color: #fff;
+    border: none;
+    text-align: center;
+    font-size: 17px;
+}
+
+.input_btn:focus{
+    outline: none;
+}
+
+.button-minus, .button-add {
+    width:40px;;
+    height:40px;
+    background-color: #fff;
+    border:1px solid rgb(0, 0, 0);
+    color: rgb(0, 0, 0);
+    border-radius:15%;
+    cursor: pointer;
+}
+
+.button-minus:not([disabled]):hover, .button-add:not([disabled]):hover {
+    background-color: rgb(0, 0, 0);
+    border:none;
+    color: #fff;
+    transition: 0.5s;
+}
+
+#valider:not([disabled]):hover{
+    background-color:#18b131;
+    border:none;
+    color: #fff;
+    transition: 0.5s;
+}
+
+#annuler:not([disabled]):hover{
+    background-color:rgb(179, 0, 0);
+    border:none;
+    color: #fff;
+    transition: 0.5s;
+}
+
+#opti:not([disabled]):hover{
+    background-color:#181bb1;
+    border:none;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.resume_panier #erreur
+{
+    width: 100%;
+    margin-top: 3%;
+    padding-left: 30%;
+    color: red;
+}
+
+.resume_panier #erreur a{
+    color: orange;
+}

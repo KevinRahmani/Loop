@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+html, body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container_body{
+    width: 85%;
+    margin-left: 10%;
+    margin-top: 3%;
+    position: relative;
+    text-align:justify;
+    font-size: 19px;
+}
+
+
+h1{
+    font-size: 35px;
+}
