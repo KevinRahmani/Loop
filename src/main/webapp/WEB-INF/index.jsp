@@ -21,7 +21,7 @@
     <title>Loop</title>
 </head>
 <body>
-<%@ include file="shared/intro.jsp" %>
+<%@include file="shared/intro.jsp"%>
 <%@ include file="shared/header.jsp" %>
 
 <section class="container_body">
@@ -37,7 +37,6 @@
                 <div class="card-wrapper swiper-wrapper">
                     <c:forEach items="${requestScope.smartphoneList}" var="smartphone">
                         <div class="card swiper-slide">
-                            <!-- Page de produit à implémenter -->
                             <a href="redirection-servlet?requestedPage=product&product=${smartphone.id}">
                                 <div class="img-box">
                                     <img src="${smartphone.image}1.jpg" alt="">
@@ -156,8 +155,8 @@
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="js/swiper-bundle.min.js"></script>
-<script src="js/index.js"></script>
 <script src="js/intro.js"></script>
+<script src="js/index.js"></script>
 <script src="js/header.js"></script>
 </body>
 </html>

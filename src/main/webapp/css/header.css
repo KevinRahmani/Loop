@@ -243,38 +243,27 @@ nav{
 }
 
 #nameLogo path:nth-child(1){
-    stroke-dasharray: 221;
-    stroke-dashoffset: 221;
+    stroke-dasharray: 581;
+    stroke-dashoffset: 581;
     animation: line-anim 2s ease forwards 3.5s;
 }
 #nameLogo path:nth-child(2){
-    stroke-dasharray: 257;
-    stroke-dashoffset: 257;
+    stroke-dasharray: 434;
+    stroke-dashoffset: 434;
     animation: line-anim 2s ease forwards 3.8s;
 }
 #nameLogo path:nth-child(3){
-    stroke-dasharray: 221;
-    stroke-dashoffset: 221;
+    stroke-dasharray: 434;
+    stroke-dashoffset: 434;
     animation: line-anim 2s ease forwards 4.1s;
 }
 #nameLogo path:nth-child(4){
-    stroke-dasharray: 211;
-    stroke-dashoffset: 211;
+    stroke-dasharray: 297;
+    stroke-dashoffset: 297;
     animation: line-anim 2s ease forwards 4.4s;
 
 }
-#nameLogo path:nth-child(5){
-    stroke-dasharray: 281;
-    stroke-dashoffset: 281;
-    animation: line-anim 2s ease forwards 4.7s;
 
-}
-#nameLogo path:nth-child(6){
-    stroke-dasharray: 123;
-    stroke-dashoffset: 123;
-    animation: line-anim 2s ease forwards 5.0s;
-
-}
 /* search bar */
 
 
