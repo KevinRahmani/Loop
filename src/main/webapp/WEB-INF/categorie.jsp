@@ -26,7 +26,7 @@
         <div class="fond_accueil">
             <img src="img/${requestScope.categorie}/${requestScope.categorie}.jpg" alt="balbala">
             <div class="container">
-                <div class="titre_section">${requestScope.categorie}</div>
+                <div class="titre_section">${requestScope.fullNameCategory}</div>
                 <div class="citation">You want it, Loop will make it</div>
                 <div class="lien_ancre">
                     <a href="#produit">Commander maintenant !</a>

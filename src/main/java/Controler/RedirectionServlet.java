@@ -1,7 +1,9 @@
 package Controler;
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -21,6 +23,7 @@ import utils.ProcessBasketServlet;
 public class RedirectionServlet extends HttpServlet {
     private ArticleService<ArticleEntity> articleService;
     private EntityManager entityManager;
+    private HashMap<String, String> categorie;
     public void init() {
         EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("stockPersistence");
         entityManager = entityManagerFactory.createEntityManager();
@@ -107,9 +110,12 @@ public class RedirectionServlet extends HttpServlet {
 
         List<ArticleEntity> listCategorie= articleService.findAllByCategorie(requestedCategorie);
 
+        String fullNameCategory = associatedCategory(requestedCategorie);
+
         //Set Attribute
         request.setAttribute("listCategorie", listCategorie);
         request.setAttribute("categorie", requestedCategorie);
+        request.setAttribute("fullNameCategory", fullNameCategory);
 
         request.getRequestDispatcher("WEB-INF/categorie.jsp").forward(request, response);
     }
@@ -161,5 +167,22 @@ public class RedirectionServlet extends HttpServlet {
             request.setAttribute("totalPriceTTC", totalPriceTTC);
             request.getRequestDispatcher("WEB-INF/invoice.jsp").forward(request, response);
         }
+    }
+
+    private void fillCategorie(){
+        categorie = new HashMap<>();
+        categorie.put("automobile", "automobile");
+        categorie.put("ht", "High-Tech");
+        categorie.put("bja", "Bricolage, jardin et animalerie");
+        categorie.put("cm", "Cuisine et Maison");
+        categorie.put("mdb", "Musique, DVD et Blu-ray");
+        categorie.put("sports", "Sports & Loisirs");
+        categorie.put("livre", "Livres");
+        categorie.put("vetements", "Vêtements");
+    }
+
+    private String associatedCategory(String requestedCategory){
+        fillCategorie();
+        return categorie.get(requestedCategory) != null ? categorie.get(requestedCategory) : null;
     }
 }
