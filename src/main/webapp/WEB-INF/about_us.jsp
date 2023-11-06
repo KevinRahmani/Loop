@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vendor</title>
+    <title>Loop</title>
 
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
@@ -22,7 +22,7 @@
 
     <section class="container_body">
         <h1>A propos de nous</h1>
-        <p>Avec ses produits abordables, modernes et étonnants, Vendor est en Europe le magasin
+        <p>Avec ses produits abordables, modernes et étonnants, Loop est en Europe le magasin
             favori pour les petits budgets. D'origine néerlandaise, nous avons déjà ouvert plus
             de 2 100 magasins dans 10 pays.</p>
         <p>Vous aussi, vous aimez les produits originaux et pratiques ? Laissez-vous surprendre
@@ -34,7 +34,7 @@
             de plus pour passer plus souvent ! Nous vous avertissons : ne soyez pas surpris si vous
             entrez pour acheter un détergent et que vous quittez le magasin fou de joie avec un
             sac rempli de plein d'autres choses pratiques à petits prix. C'est ce qu'on appelle
-            l'effet Vendor !</p>
+            l'effet Loop !</p>
         <p>Surprendre encore et encore des clients comme vous avec un vaste assortiment qui change
             constamment, à un prix aussi bas que possible : c'est notre objectif depuis plus de 25 ans.
             Des petits prix pour un grand sourire est ce que nous visons !</p>

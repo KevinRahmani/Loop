@@ -39,7 +39,7 @@ public class ContactControllerServlet extends HttpServlet {
 
         try {
             if(VerifyData.verifyParameters(name,mail,message,"testSake", "testSake", "testSake")){
-                status = "Demamnde de contact envoyé avec succès";
+                status = "Demande de contact envoyé avec succès";
                 String subject = "Demande de contact";
                 String content = "Bonjour Administrateur,<br><br>Vous avez reçu un nouveau messsage de "
                         + name + " le " + LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) + " dont l'adresse mail est : " + mail +

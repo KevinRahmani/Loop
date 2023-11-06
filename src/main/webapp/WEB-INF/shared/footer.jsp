@@ -10,6 +10,6 @@
 
 
         <div class="col item social"><a href="https://www.instagram.com/vendor_insta/"><i class="fa-brands fa-instagram"></i></a><a href="https://twitter.com/vendorOfficial"><i class="fa-brands fa-twitter"></i></a><a href="https://www.facebook.com/people/vendor/100063691533412/?fref=ts"><i class="fa-brands fa-facebook"></i></a></div>
-        <p class="copyright">Vendor © 2023</p>
+        <p class="copyright">Loop © 2023</p>
     </div>
 </footer>

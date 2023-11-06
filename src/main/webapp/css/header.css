@@ -282,7 +282,7 @@ nav .box{
 
 nav .box:hover input{
     width: 550px;
-    content: "Rechercher sur Vendor";
+    content: "Rechercher sur Loop";
 }
 
 nav .box input{
