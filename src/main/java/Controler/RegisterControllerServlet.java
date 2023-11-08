@@ -1,7 +1,6 @@
 package Controler;
 
 import java.io.*;
-import java.sql.Timestamp;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -50,7 +49,7 @@ public class RegisterControllerServlet extends HttpServlet {
                     //if email valid
                     if(VerifyData.isValidMail(mail)){
                         //verify if mail is already taken
-                        if(!VerifyData.isTakenMail(mail,clientService)){
+                        if(VerifyData.isFreeMailClient(mail, clientService, null)){
                             ClientEntity client = new ClientEntity();
                             client.setUp(nom, password, mail, address);
                             clientService.add(client);

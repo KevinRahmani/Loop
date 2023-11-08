@@ -69,6 +69,9 @@ body, html
 .lien_ancre a{
     text-decoration: none;
     color: #fff;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
 }
 
 .lien_ancre:not([disabled]):hover{

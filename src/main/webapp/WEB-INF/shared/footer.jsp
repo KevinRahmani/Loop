@@ -1,6 +1,3 @@
-<script src="https://kit.fontawesome.com/82e270d318.js" crossorigin="anonymous"></script>
-
-
 <footer class="footer-dark">
     <div class="container-footer">
         <p>Une MarketPlace efficace, faites-vous plaisir avec tous nos produits et services ! </p>
@@ -13,3 +10,5 @@
         <p class="copyright">Loop © 2023</p>
     </div>
 </footer>
+
+<script src="https://kit.fontawesome.com/82e270d318.js" crossorigin="anonymous"></script>

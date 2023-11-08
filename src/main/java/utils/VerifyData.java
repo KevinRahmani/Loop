@@ -1,11 +1,8 @@
 package utils;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
 import jakarta.servlet.http.HttpServletRequest;
-import model.beans.ArticleEntity;
 import model.beans.ClientEntity;
+import model.beans.VendeurEntity;
 import model.dto.UserDTO;
 import model.service.UserService;
 
@@ -94,15 +91,25 @@ public class VerifyData {
         return matcher.matches();
     }
 
-    public static boolean isTakenMail(String mail, UserService<ClientEntity> clientService) {
+    public static boolean isFreeMailClient(String mail, UserService<ClientEntity> clientService, ClientEntity client) {
         UserDTO user = new UserDTO();
         user.setMail(mail);
 
         List<ClientEntity> clients = clientService.findAllByFilters(user);
+        clients.remove(client);
 
-        return !clients.isEmpty();
+        return clients.isEmpty();
     }
 
+    public static boolean isFreeMailVendeur(String mail, UserService<VendeurEntity> vendeurService, VendeurEntity vendeur) {
+        UserDTO user = new UserDTO();
+        user.setMail(mail);
+
+        List<VendeurEntity> vendeurs = vendeurService.findAllByFilters(user);
+        vendeurs.remove(vendeur);
+
+        return vendeurs.isEmpty();
+    }
 
 
 }

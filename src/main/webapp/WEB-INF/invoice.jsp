@@ -20,15 +20,58 @@
     <%@include file="shared/header.jsp"%>
     <section class="container-table">
         <span class="overlay"></span>
+        <!-- MODAL BOX -->
         <div class="modal-box">
-            <i class="fa-regular fa-circle-check"></i>
-            <h2>Transaction en cours de paiement</h2>
-            <h3>Valider sur votre application bancaire par mobile !</h3>
-            <div class="buttons">
-                <button class="close-btn">Annuler</button>
-                <button id="confirm">Confirmer</button>
+            <div class="image-logo">
+                <img src="img/logo/mastercard.png" alt="logoBank">
+                <img src="img/logo/visa.png" alt="VerifiedByVisa">
             </div>
+            <div class="container-modal">
+                <div class="check-text">
+                    <h2>Transaction en cours de paiement</h2>
+                    <h3>Valider sur votre application bancaire par mobile suite au paiement !</h3>
+                </div>
+                <div class="loader"></div>
+            </div>
+            <div class="content-detail">
+                <div class="title-detail">Valider votre opération</div>
+                <div class="concern-detail">Pour vous protéger contre l'utilisation frauduleuse de votre carte bancaire, Loop déploie toutes les mesures sécuritaires nécéssaires à votre protection</div>
+                <div class="info-payment">
+                    <div><span>Marchand :</span> Loop</div>
+                    <div><span>Montant :</span> ${requestScope.totalPriceTTC} €</div>
+                </div>
+                <form action="commandController-servlet" id="formCommand" method="POST">
+                    <div class="info-card">
+                        <div class="input-container">
+                            <label for="name-card">Nom du titulaire :</label>
+                            <input type="text" name="name-card" id="name-card"/>
+                        </div>
+
+                        <div class="input-container">
+                            <label for="number-card">Numéro de la carte :</label>
+                            <input type="text" name="number-card" id="number-card"/>
+                        </div>
+
+                        <div class="input-container">
+                            <label for="date-card">Date d'expiration :</label>
+                            <input type="date" name="date-card" id="date-card"/>
+
+                        </div>
+
+                        <div class="input-container">
+                            <label for="cvc-card">Code CVC :</label>
+                            <input type="text" name="cvc-card" id="cvc-card"/>
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        <input type="button" id="close-btn" value="Annuler"/>
+                        <input type="submit" id="confirm" value="Confirmer"/>
+                    </div>
+                </form>
+            </div>
+            <div class="message_info"></div>
         </div>
+        <!-- END MODAL BOX -->
         <div class="facture">
             <h2>Votre facture</h2>
             <table>
@@ -81,7 +124,6 @@
                 <a href="redirection-servlet?requestedPage=basket" class="annuler">Annuler</a>
                 <button class="envoyer showModal">Envoyer</button>
             </div>
-            <div class="message_info"></div>
         </div>
     </section>
 

@@ -56,7 +56,7 @@ public class MailControllerServlet extends HttpServlet {
 
                     emailSubject = "Commande Loop";
                     emailContent = "Bonjour "+client.getNom()+",<br><br>"+
-                            "Merci pour votre commande d'un montant total de " +totalPriceTTC + " &euro.<br>" +
+                            "Merci pour votre commande d'un montant total de " +totalPriceTTC + " euros.<br>" +
                             "Vous serez livré sous un délai de 3 jours hors week-end et jours fériés au " + client.getAdresse() +".<br>" +
                             "Voici votre commande : <br><br>";
                     for (Map.Entry<ArticleEntity, Integer> entry : basket.getPanier().entrySet()){

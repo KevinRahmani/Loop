@@ -50,7 +50,7 @@ public class AddVendeurServlet extends HttpServlet{
             String mail = request.getParameter("mail");
 
             if (VerifyData.verifyParameters(nom, password, adresse, mail, "testSake", "testSake")) {
-                if(mail.endsWith("@loop.com")){
+                if(mail.endsWith("@loop.com") && VerifyData.isFreeMailVendeur(mail, userService, null)){
                     VendeurEntity vendeur = new VendeurEntity();
 
                     vendeur.setNom(nom);vendeur.setPassword(password);vendeur.setMail(mail);

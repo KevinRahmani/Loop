@@ -6,6 +6,11 @@ html, body{
     box-sizing: border-box;
 }
 
+.container-table{
+    width: 100%;
+    height: 100%;
+}
+
 .facture {
     width : 75%;
     margin-left: 15%;
@@ -141,10 +146,10 @@ input:focus{
 .message_info{
     color: #d10707;
     text-align: center;
-    margin-top: 2%;
-    font-size: 20px;
+    margin-top: 4%;
+    font-size: 17px;
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .livraison{
@@ -185,10 +190,8 @@ select option {
 
 
 /* MODAL BOX */
-
-.container-table{
-    width: 100%;
-    height: 100%;
+footer.active {
+    display: none;
 }
 
 section.active .facture{
@@ -204,7 +207,6 @@ section.active .overlay {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: rgba(0,0,0,0.3);
     pointer-events: none;
     opacity: 0;
 }
@@ -212,21 +214,23 @@ section.active .overlay {
 
 .modal-box {
     position: absolute;
+    font-family: "Poppins", sans-serif;
+    z-index: 99;
     left: 50%;
-    top: 50%;
+    top: 63%;
     box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     background-color: #fff;
-    max-width: 380px;
+    max-width: 580px;
     display: flex;
-    pointer-events: none;
     flex-direction: column;
-    padding: 15px;
+    pointer-events: none;
     transition: all 0.3s ease;
     transform: translate(-50%,-50%) scale(1.2);
     align-items: center;
     width: 100%;
-    border-radius: 24px;
+    border-radius: 25px;
     opacity: 0;
+    padding: 25px;
 }
 
 section.active .modal-box {
@@ -235,39 +239,133 @@ section.active .modal-box {
     transform: translate(-50%,-50%) scale(1);
 }
 
-.modal-box i {
-    font-size: 70px;
-    color: #4070f4;
+.modal-box .image-logo {
+    display: flex;
+    justify-content: space-between;
 }
 
-.modal-box h2 {
-    margin-top: 20px;
+.modal-box .image-logo img{
+    width: 15%;
+}
+
+.modal-box .container-modal{
+    background-color: #017014;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px;
+}
+
+.modal-box .container-modal .check-text h2 {
     font-size: 27px;
     font-weight: 500;
-    color: #333;
+    text-align: center;
+    color: #fff;
+
 }
 
-.modal-box h3 {
-    font-size: 20px;
-    font-weight: 500;
-    color: #333;
+.modal-box .container-modal .check-text h3 {
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+    color: #fff;
+
+}
+
+.modal-box .container-modal .loader{
+    border: 4px solid #f3f3f3; /* Couleur de fond */
+    border-top: 4px solid #3498db; /* Couleur du cercle */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite; /* Animation */
+}
+
+.modal-box .content-detail{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-box .content-detail .title-detail{
+    font-size: 25px;
+    text-decoration: underline;
+    color: #017014;
+}
+
+.modal-box .content-detail .concern-detail{
+    margin-top: 10px;
+    font-size: 15px;
     text-align: center;
 }
 
+.modal-box .content-detail .info-payment{
+    margin-top: 10px;
+}
+
+.modal-box .content-detail .info-payment span{
+    font-weight: bold;
+}
+
+.modal-box .content-detail form{
+    margin-top: 10px;
+    width: 100%;
+}
+
+
+.modal-box .content-detail form .info-card {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.modal-box .content-detail form .info-card .input-container{
+
+}
+
+.modal-box .content-detail form .info-card .input-container label {
+    position: relative;
+    margin-bottom: 10px;
+    color: #999;
+    font-size: 13px;
+}
+
+.modal-box .content-detail form .info-card .input-container input {
+    width: 130px;
+    padding: 10px;
+    font-size: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.modal-box .content-detail form .info-card .input-container input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 5px #3498db;
+}
+
 .modal-box .buttons{
-    margin-top: 15px;
+    margin-top: 20px;
     display: flex;
     justify-content: space-evenly;
     width: 100%;
     align-items: center;
 }
 
-.modal-box button {
+.modal-box .content-detail form .buttons input {
     padding: 6px 12px;
     margin: 0 10px;
-    font-size: 14px;
+    font-size: 17px;
     border: none;
-    background-color: #4070f4;
     border-radius: 6px;
     font-weight: 400;
     color: #fff;
@@ -277,6 +375,27 @@ section.active .modal-box {
     height: 40px;
 }
 
-.modal-box button:hover{
-    background-color: #265df2;
+.modal-box .content-detail form .buttons #close-btn{
+    background-color: #d10707;
+}
+
+.modal-box .content-detail form .buttons #close-btn:hover{
+    background-color: #fff;
+    color: #d10707;
+}
+
+.modal-box .content-detail form .buttons #confirm{
+    background-color: #017014;
+}
+
+.modal-box .content-detail form .buttons #confirm:hover{
+    background-color: #fff;
+    color: #017014;
+}
+
+
+
+@keyframes spin {
+    0% { transform: rotate(0deg); } /* Début de l'animation */
+    100% { transform: rotate(360deg); } /* Fin de l'animation */
 }

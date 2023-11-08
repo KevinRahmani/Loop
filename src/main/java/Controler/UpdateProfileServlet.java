@@ -2,7 +2,6 @@ package Controler;
 
 
 import java.io.*;
-import java.util.List;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -11,10 +10,8 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.beans.AdminEntity;
-import model.beans.ArticleEntity;
 import model.beans.ClientEntity;
 import model.beans.VendeurEntity;
-import model.service.ArticleService;
 import model.service.UserService;
 import utils.ProcessTypeUserServlet;
 import utils.VerifyData;
@@ -60,7 +57,7 @@ public class UpdateProfileServlet extends HttpServlet{
             if(VerifyData.verifyParameters(password,mail,nom,adresse,"testSake","testSake")) {
                 switch (typeUser){
                     case "admin":
-                        if(!mail.endsWith("@adminloop.com")){
+                        if(mail.endsWith("@adminloop.com")){
                             AdminEntity admin = (AdminEntity) request.getSession().getAttribute("user");
                             admin.setNom(nom);admin.setPassword(password);admin.setMail(mail);admin.setAdresse(adresse);
                             adminService.update(admin);
@@ -75,7 +72,7 @@ public class UpdateProfileServlet extends HttpServlet{
 
 
                     case "vendeur":
-                        if(!mail.endsWith("@loop.com")){
+                        if(mail.endsWith("@loop.com") && VerifyData.isFreeMailVendeur(mail, vendeurService, (VendeurEntity) request.getSession().getAttribute("user"))){
                             VendeurEntity vendeur = (VendeurEntity) request.getSession().getAttribute("user");
                             vendeur.setNom(nom);vendeur.setPassword(password);vendeur.setMail(mail);vendeur.setAdresse(adresse);
                             vendeurService.update(vendeur);
@@ -90,7 +87,7 @@ public class UpdateProfileServlet extends HttpServlet{
 
 
                     case "client":
-                        if(VerifyData.isValidMail(mail) && !VerifyData.isTakenMail(mail,clientService)){
+                        if(VerifyData.isValidMail(mail) && VerifyData.isFreeMailClient(mail, clientService, (ClientEntity) request.getSession().getAttribute("user"))){
                             ClientEntity client = (ClientEntity) request.getSession().getAttribute("user");
                             client.setNom(nom);client.setPassword(password);client.setMail(mail);client.setAdresse(adresse);
                             clientService.update(client);

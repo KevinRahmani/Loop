@@ -54,7 +54,7 @@ public class AddProductServlet extends HttpServlet {
 
             if(VerifyData.verifyParameters(nom,marque,type,couleur,description,categorie)) {
                 article = new ArticleEntity();
-                String pathImg = "img/"+categorie+"/"+article.getId()+"/";
+                String pathImg = "img/";
                 if(typeUser.equals("vendeur")){
                     VendeurEntity vendeur = (VendeurEntity) request.getSession().getAttribute("user");
                     article.setUp(nom, marque, prix, vendeur.getNom(), stock, type, couleur, description, 0, pathImg,categorie);
