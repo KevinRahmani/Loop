@@ -14,7 +14,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ArticleServiceTest {
+class   ArticleServiceTest {
     private EntityManagerFactory entityManagerFactory;
     private EntityManager entityManager;
     private ArticleService<ArticleEntity> articleService;

@@ -1,9 +1,7 @@
 package model.beans;
 
-import jakarta.servlet.http.HttpSession;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class Basket {
     public HashMap<ArticleEntity, Integer> basket;

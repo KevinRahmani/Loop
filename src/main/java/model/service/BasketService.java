@@ -1,6 +1,5 @@
 package model.service;
 
-import jakarta.servlet.http.HttpSession;
 import model.beans.Basket;
 import model.beans.ArticleEntity;
 import model.dao.GenericDAO;
@@ -8,7 +7,6 @@ import model.dao.GenericDAO;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class BasketService implements GenericDAO<ArticleEntity> {
 
