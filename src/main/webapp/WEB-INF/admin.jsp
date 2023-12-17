@@ -81,7 +81,7 @@
                     <label for="mail">Mail : </label><input type="email" id="mail" value="${sessionScope.user.mail}" placeholder="Mail" name="mail">
                 </div>
                 <div class="coord_1">
-                    <label for="password"> Password : </label><input type="password" id="password" value="${sessionScope.user.password}" placeholder="Password" name="password">
+                    <label for="password"> Password : </label><input type="password" id="password" value="" placeholder="Password" name="password">
                 </div>
                 <div class="coord_1">
                     <label for="adresse">Adresse : </label><input type="text" id="adresse" value="${sessionScope.user.adresse}" placeholder="Adresse" name="adresse" >

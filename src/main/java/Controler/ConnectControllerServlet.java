@@ -11,6 +11,7 @@ import model.beans.AdminEntity;
 import model.beans.ClientEntity;
 import model.beans.VendeurEntity;
 import model.service.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 
 @WebServlet(name = "connectControllerServlet", value = "/connectController-servlet")
 public class ConnectControllerServlet extends HttpServlet{
@@ -32,12 +33,13 @@ public class ConnectControllerServlet extends HttpServlet{
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String password = request.getParameter("password");
+
         String mail = request.getParameter("name");
 
         if(password != null && mail !=null && !password.isEmpty() && !mail.isEmpty()) {
             if (UserService.isVendeurEmail(mail)) {
                 VendeurEntity vendeur = vendeurService.connect(mail, password);
-                if (vendeur != null) {
+                if (vendeur != null && BCrypt.checkpw(password, vendeur.getPassword())) {
                     request.getSession().setAttribute("user", vendeur);
                     request.getSession().setAttribute("type", "vendeur");
                     response.sendRedirect("redirection-servlet");
@@ -47,7 +49,7 @@ public class ConnectControllerServlet extends HttpServlet{
                 }
             } else if (UserService.isAdminEmail(mail)) {
                 AdminEntity admin = adminService.connect(mail, password);
-                if (admin != null) {
+                if (admin != null && BCrypt.checkpw(password, admin.getPassword())) {
                     request.getSession().setAttribute("user", admin);
                     request.getSession().setAttribute("type", "admin");
                     response.sendRedirect("redirection-servlet");
@@ -57,7 +59,7 @@ public class ConnectControllerServlet extends HttpServlet{
                 }
             } else {
                 ClientEntity client = clientService.connect(mail, password);
-                if (client != null) {
+                if (client != null && BCrypt.checkpw(password, client.getPassword())) {
                     request.getSession().setAttribute("user", client);
                     request.getSession().setAttribute("type", "client");
                     response.sendRedirect("redirection-servlet");

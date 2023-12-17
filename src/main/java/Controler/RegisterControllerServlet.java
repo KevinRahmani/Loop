@@ -10,6 +10,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.beans.ClientEntity;
 import model.service.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 import utils.VerifyData;
 
 @WebServlet(name = "registerControllerServlet", value = "/registerController-servlet")
@@ -41,6 +42,7 @@ public class RegisterControllerServlet extends HttpServlet {
             String mail = request.getParameter("mail");
             String address = request.getParameter("adresse");
             String password = request.getParameter("password");
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
 
             //if parameters not null and not empty
             if (VerifyData.verifyParameters(nom, mail, address, password, "testSake", "testSake")) {
@@ -51,7 +53,7 @@ public class RegisterControllerServlet extends HttpServlet {
                         //verify if mail is already taken
                         if(VerifyData.isFreeMailClient(mail, clientService, null)){
                             ClientEntity client = new ClientEntity();
-                            client.setUp(nom, password, mail, address);
+                            client.setUp(nom, hashedPassword, mail, address);
                             clientService.add(client);
                             entityManager.getTransaction().commit();
 

@@ -13,6 +13,7 @@ import model.beans.AdminEntity;
 import model.beans.ClientEntity;
 import model.beans.VendeurEntity;
 import model.service.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 import utils.ProcessTypeUserServlet;
 import utils.VerifyData;
 
@@ -48,6 +49,7 @@ public class UpdateProfileServlet extends HttpServlet{
                 init();
             }
             String password = request.getParameter("password");
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
             String mail = request.getParameter("mail");
             String nom = request.getParameter("nom");
             String adresse = request.getParameter("adresse");
@@ -59,7 +61,7 @@ public class UpdateProfileServlet extends HttpServlet{
                     case "admin":
                         if(mail.endsWith("@adminloop.com")){
                             AdminEntity admin = (AdminEntity) request.getSession().getAttribute("user");
-                            admin.setNom(nom);admin.setPassword(password);admin.setMail(mail);admin.setAdresse(adresse);
+                            admin.setNom(nom);admin.setPassword(hashedPassword);admin.setMail(mail);admin.setAdresse(adresse);
                             adminService.update(admin);
                             entityManagerUser.getTransaction().commit();
                             request.getSession().setAttribute("user", admin);
@@ -74,7 +76,7 @@ public class UpdateProfileServlet extends HttpServlet{
                     case "vendeur":
                         if(mail.endsWith("@loop.com") && VerifyData.isFreeMailVendeur(mail, vendeurService, (VendeurEntity) request.getSession().getAttribute("user"))){
                             VendeurEntity vendeur = (VendeurEntity) request.getSession().getAttribute("user");
-                            vendeur.setNom(nom);vendeur.setPassword(password);vendeur.setMail(mail);vendeur.setAdresse(adresse);
+                            vendeur.setNom(nom);vendeur.setPassword(hashedPassword);vendeur.setMail(mail);vendeur.setAdresse(adresse);
                             vendeurService.update(vendeur);
                             entityManagerUser.getTransaction().commit();
                             request.getSession().setAttribute("user", vendeur);
@@ -89,7 +91,7 @@ public class UpdateProfileServlet extends HttpServlet{
                     case "client":
                         if(VerifyData.isValidMail(mail) && VerifyData.isFreeMailClient(mail, clientService, (ClientEntity) request.getSession().getAttribute("user"))){
                             ClientEntity client = (ClientEntity) request.getSession().getAttribute("user");
-                            client.setNom(nom);client.setPassword(password);client.setMail(mail);client.setAdresse(adresse);
+                            client.setNom(nom);client.setPassword(hashedPassword);client.setMail(mail);client.setAdresse(adresse);
                             clientService.update(client);
                             entityManagerUser.getTransaction().commit();
                             request.getSession().setAttribute("user", client);

@@ -5,8 +5,10 @@ import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
+import model.beans.ClientEntity;
 import model.dao.UserDAO;
 import model.dto.UserDTO;
+import org.mindrot.jbcrypt.BCrypt;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,24 +78,19 @@ public class UserService<T> implements UserDAO<T> {
 
     @Override
     public T connect(String mail, String password) {
-        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> cq = cb.createQuery(entityClass);
-        Root<T> root = cq.from(entityClass);
-        cq.select(root);
+       UserDTO dto = new UserDTO();
+       dto.setMail(mail);
+       List<T> results = findAllByFilters(dto);
 
-        Predicate emailPredicate = cb.equal(root.get("mail"), mail);
-        Predicate passwordPredicate = cb.equal(root.get("password"), password);
-
-        cq.where(cb.and(emailPredicate, passwordPredicate));
-
-        List<T> results = entityManager.createQuery(cq).getResultList();
-
+        //il faut vérifier BCrypt.checkpw(password, t.getPassword());
         if (results.isEmpty()) {
             return null;
         } else {
             return results.get(0);
         }
     }
+
+
 
     public static boolean isVendeurEmail(String email) {
         String domain = "@loop.com";

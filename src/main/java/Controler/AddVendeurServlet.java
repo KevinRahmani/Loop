@@ -7,6 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import model.beans.VendeurEntity;
 import model.service.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 import utils.ProcessTypeUserServlet;
 import utils.VerifyData;
 
@@ -42,9 +43,17 @@ public class AddVendeurServlet extends HttpServlet{
                 init();
             }
 
+            //SUPPRIMER
+            /*if (BCrypt.checkpw(candidate, hashed))
+                System.out.println("It matches");
+            else
+                System.out.println("It does not match");*/
+            //A SUPPRIMER
+
             //Parameters
             String nom = request.getParameter("nom");
             String password = request.getParameter("password");
+            String hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
             String adresse = request.getParameter("adresse");
             //must end with @loop.com
             String mail = request.getParameter("mail");
@@ -53,7 +62,8 @@ public class AddVendeurServlet extends HttpServlet{
                 if(mail.endsWith("@loop.com") && VerifyData.isFreeMailVendeur(mail, userService, null)){
                     VendeurEntity vendeur = new VendeurEntity();
 
-                    vendeur.setNom(nom);vendeur.setPassword(password);vendeur.setMail(mail);
+
+                    vendeur.setNom(nom);vendeur.setPassword(hashedPassword);vendeur.setMail(mail);
                     vendeur.setAdresse(adresse);vendeur.setDatesignup(new Timestamp(System.currentTimeMillis()));
                     vendeur.setNbtotalsales(0);vendeur.setAddRight(1);vendeur.setModifyRight(1);vendeur.setRemoveRight(1);
 
