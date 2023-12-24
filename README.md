@@ -1,2 +1,2 @@
 # Loop
-E-commercial website uging JEE
+E-commercial website using JEE
